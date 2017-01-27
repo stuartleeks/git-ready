@@ -60,7 +60,39 @@
 				offset: 0
 			}
 		});
-
+		var graphConfigSmall = new GitGraph.Template({
+			branch: {
+				color: "#999",
+				lineWidth: 3,
+				spacingX: 30,
+				mergeStyle: "straight",
+				showLabel: false,
+				labelRotation: 0
+			},
+			commit: {
+				spacingY: -50,
+				dot: {
+					size: 12,
+					// strokeColor: "#999",
+					strokeWidth: 0
+				},
+				tag: {
+					font: "normal 10pt Arial",
+					color: "yellow"
+				},
+				message: {
+					color: "#999",
+					font: "normal 12pt Arial",
+					displayAuthor: false,
+					displayBranch: false,
+					displayHash: false,
+				}
+			},
+			arrow: {
+				size: 8,
+				offset: 0
+			}
+		});
 
 
 
@@ -76,46 +108,86 @@
 <body>
 	<div class="reveal">
 		<div class="slides">
+			<!-- **************************       Intro         ************************** -->
 			<section class="middle">
-				<section>
+				<section data-transition="slide">
 					<h1>git ready</h1>
 					<aside class="notes">I liked Nava's idea of #click# "git master"</aside>
 				</section>
-				<section>
+				<section data-transition="slide">
 					<h1>git master</h1>
-					<aside class="notes">... but I'm not. Was going to be #click#</aside>
+					<aside class="notes">... but I'm not. Original idea was #click#</aside>
 				</section>
-				<section>
+				<section data-transition="slide">
 					<h2>hard won lessons</h2>
 					<h2>with git</h2>
 					<aside class="notes">... but why pass up a pun :-)</aside>
 				</section>
-				<section>
+				<section data-transition="slide">
 					<h1>git ready</h1>
 					<p>git theory in 5 minutes.</p>
 					<p>hold on to your hats...</p>
-					<aside class="notes">... but why pass up a pun :-)</aside>
+					<aside class="notes">Buckle up ;-)</aside>
 				</section>
 			</section>
+			<!-- **************************       Recap         ************************** -->
 			<section>
 				<section class="middle">
 					<h1>git recap</h1>
-				</section>
-				<section>
-					TODO - diagram of commits and branches
-					<ul>
-						<li>commit - describes a diff against a parent</li>
-						<li>branch - pointer to a commit</li>
-						<li>when "on" a branch, committing moves the pointer with you</li>
-						<ul>
-							<li>show two branches at same point, add commit and advance branch</li>
-						</ul>
-					</ul>
+					<aside class="notes">High speed recap on git concepts</aside>
 				</section>
 				<section class="left">
-					<h2>commits and branches</h2>
-					<canvas id="gitrecap-commits"></canvas>
+					<h2>commits</h2>
+					<canvas id="gitrecap-commits-big"></canvas>
 					<script>
+						var gitgraph = new GitGraph({
+							template: graphConfig,
+							elementId: "gitrecap-commits-big",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit().commit().commit().commit().commit().commit().commit().commit().commit().commit();
+					</script>
+<aside class="notes">Each commit has parent and diffs. Linear like this is great... but doesn't happen in teams ;-)</aside>
+</section>
+<section class="left">
+	<h2>commits and branches</h2>
+	<canvas id="gitrecap-commits-big2"></canvas>
+	<script>
+						var gitgraph = new GitGraph({
+							template: graphConfigSmall,
+							elementId: "gitrecap-commits-big2",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit().commit();
+						var a = master.branch();
+						var b = master.branch();
+						a.commit();
+						b.commit().commit();
+						a.commit();
+						var c = b.branch().commit().commit();
+						a.merge(b);
+						b.commit().commit();
+						c.merge(b);
+						b.commit();
+						master.commit();
+						a.commit()
+						master.commit();
+						b.merge(a);
+						a.merge(master);
+	</script>
+<aside class="notes">
+	<p>More likely to end up with something like this!</p>
+	<p>Each dot is a commit: parent and changes. Good to keep this in mind for the next few minutes!</p>
+</aside>
+</section>
+<section class="left">
+	<h2>commits and branches</h2>
+	<canvas id="gitrecap-commits"></canvas>
+	<script>
 						var gitgraph = new GitGraph({
 							template: graphConfig,
 							elementId: "gitrecap-commits",
@@ -124,8 +196,9 @@
 						});
 						var master = gitgraph.branch("master");
 						master.commit()
-							.commit()
-					</script>
+							.commit();
+	</script>
+<aside class="notes">Strip it back...</aside>
 </section>
 <section class="left">
 	<h2>commits and branches</h2>
@@ -139,65 +212,115 @@
 						});
 						var master = gitgraph.branch("master");
 						master.commit().commit();
-						master.branch("branch1").commit()
+						master.branch("branch1").commit();
 
 	</script>
+<aside class="notes">create a branch. Now two pointers, each can advance independently</aside>
 </section>
-<section>
-	TODO diagram of merging
-	<ul>
-		<li>Show master and branch1 that is ahead</li>
-		<ul>
-			<li>Show branch1 off to the side</li>
-			<li>FF-merge</li>
-		</ul>
-		<li>Show two branches that have diverged</li>
-		<ul>
-			<li>merge commit</li>
-			<ul>
-				<li>two parents</li>
-				<li>two branches, common ancestor (3-way merge)</li>
-			</ul>
-		</ul>
-	</ul>
-</section>
-
-<section>
-	<h2>merging</h2>
-	<canvas id="gitrecap-merging"></canvas>
+<section class="left">
+	<h2>commits and branches</h2>
+	<canvas id="gitrecap-commits3"></canvas>
 	<script>
 						var gitgraph = new GitGraph({
 							template: graphConfig,
-							reverseArrow: false,
-							elementId: "gitrecap-merging",
+							elementId: "gitrecap-commits3",
 							orientation: "horizontal",
 							mode: "compact"
 						});
 						var master = gitgraph.branch("master");
+						master.commit().commit();
+						master.branch("branch1").commit();
 						master.commit();
+
+	</script>
+<aside class="notes">...</aside>
+</section>
+<section class="left">
+	<h2>commits and branches</h2>
+	<canvas id="gitrecap-commits4"></canvas>
+	<script>
+						var gitgraph = new GitGraph({
+							template: graphConfig,
+							elementId: "gitrecap-commits4",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit().commit();
 						var branch1 = master.branch("branch1");
+						branch1.commit();
 						master.commit();
 						branch1.commit();
 	</script>
+<aside class="notes">
+	<p>But now we branches that have diverged. To combine we can use a merge commit...</p>
+</aside>
 </section>
-<section>
+<section class="left">
 	<h2>merging</h2>
-	<canvas id="gitrecap-merging2"></canvas>
+	<canvas id="gitrecap-merge"></canvas>
 	<script>
 						var gitgraph = new GitGraph({
 							template: graphConfig,
-							reverseArrow: false,
-							elementId: "gitrecap-merging2",
+							elementId: "gitrecap-merge",
 							orientation: "horizontal",
 							mode: "compact"
 						});
 						var master = gitgraph.branch("master");
-						master.commit();
+						master.commit().commit();
 						var branch1 = master.branch("branch1");
+						branch1.commit();
+						master.commit({ dotStrokeWidth: 10, dotStrokeColor: "white" });
+						branch1.commit({ dotStrokeWidth: 10, dotStrokeColor: "white" });
+	</script>
+<aside class="notes">
+	<p>Want to merge branch1 into master (highlighted)</p>
+</aside>
+</section>
+<section class="left">
+	<h2>merging</h2>
+	<canvas id="gitrecap-merge2"></canvas>
+	<script>
+						var gitgraph = new GitGraph({
+							template: graphConfig,
+							elementId: "gitrecap-merge2",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit().commit({ dotStrokeWidth: 10, dotStrokeColor: "white" });
+						var branch1 = master.branch("branch1");
+						branch1.commit();
+						master.commit({ dotStrokeWidth: 10, dotStrokeColor: "white" });
+						branch1.commit({ dotStrokeWidth: 10, dotStrokeColor: "white" });
+	</script>
+<aside class="notes">
+	<p>3-way merge: branches and common ancestor (highlighted)</p>
+</aside>
+</section>
+<section class="left">
+	<h2>merging</h2>
+	<canvas id="gitrecap-merged"></canvas>
+	<script>
+						var gitgraph = new GitGraph({
+							template: graphConfig,
+							elementId: "gitrecap-merged",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit().commit();
+						var branch1 = master.branch("branch1");
+						branch1.commit();
 						master.commit();
 						branch1.commit();
 						branch1.merge(master);
 	</script>
+<aside class="notes">
+	<p>Merge commit:</p>
+	<p>git creates commit with 2 parents that combines all commits/diffs</p>
+</aside>
+</section>
 </section>
 </div>
 </div>
