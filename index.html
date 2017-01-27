@@ -537,7 +537,7 @@
 						master.commit().commit();
 						var branch1Old = master.branch("branch1-old");
 						branch1Old.commit({ dotStrokeWidth: 10, dotStrokeColor: "grey" });
-						master.commit().commit();
+						master.commit().commit()		;
 						branch1Old.commit({ dotStrokeWidth: 10, dotStrokeColor: "grey" });
 						var branch1 = master.branch({name:"branch1", column:1});
 						branch1.commit({ dotStrokeWidth: 10, dotStrokeColor: "white" });
@@ -581,7 +581,7 @@
 						master.commit();
 		</script>
 <aside class="notes">
-	<p>This was the merge-to-update</p>
+	<p>This was the merge-to-update scenario</p>
 </aside>
 </section>
 <section class="left">
@@ -686,7 +686,7 @@
 						branch2.merge(master);
 		</script>
 <aside class="notes">
-	<p>This was the merge-to-update</p>
+	<p>TNow when we merge we have a nice clean history</p>
 </aside>
 </section>
 </section>
