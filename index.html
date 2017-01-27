@@ -128,10 +128,18 @@
 					<aside class="notes">... but why pass up a pun :-)</aside>
 				</section>-->
 				<section data-transition="slide">
+					<h2>hard won lessons</h2>
+					<h2>with git</h2>
+					<aside class="notes">Not a master, but here are the things I think I've figured out as a former TFS/SVN user</aside>
+				</section>
+				<section data-transition="slide">
 					<h1>git ready</h1>
 					<p>git theory in 5 minutes.</p>
 					<p>hold on to your hats...</p>
-					<aside class="notes">Buckle up ;-)</aside>
+					<aside class="notes">
+						<p>This is just git theory/concepts (not command usage!)</p>
+						<p>Buckle up ;-)</p>
+					</aside>
 				</section>
 			</section>
 			<!-- **************************       Recap         ************************** -->
@@ -537,9 +545,9 @@
 						master.commit().commit();
 						var branch1Old = master.branch("branch1-old");
 						branch1Old.commit({ dotStrokeWidth: 10, dotStrokeColor: "grey" });
-						master.commit().commit()		;
+						master.commit().commit();
 						branch1Old.commit({ dotStrokeWidth: 10, dotStrokeColor: "grey" });
-						var branch1 = master.branch({name:"branch1", column:1});
+						var branch1 = master.branch({ name: "branch1", column: 1 });
 						branch1.commit({ dotStrokeWidth: 10, dotStrokeColor: "white" });
 						branch1.commit({ dotStrokeWidth: 10, dotStrokeColor: "white" });
 	</script>
@@ -604,7 +612,7 @@
 						branch1.merge(master);
 						branch2.commit();
 						master.commit();
-		</script>
+	</script>
 <aside class="notes">
 	<p>Take out the merge... need to sync with master...</p>
 </aside>
@@ -629,7 +637,7 @@
 						branch1.merge(master);
 						branch2.commit({ dotStrokeWidth: 10, dotStrokeColor: "white" });
 						master.commit();
-		</script>
+	</script>
 <aside class="notes">
 	<p>This was the merge-to-update</p>
 </aside>
@@ -658,7 +666,7 @@
 						branch2.commit({ dotStrokeWidth: 10, dotStrokeColor: "white" });
 						branch2.commit({ dotStrokeWidth: 10, dotStrokeColor: "white" });
 
-		</script>
+	</script>
 <aside class="notes">
 	<p>This was the merge-to-update</p>
 </aside>
@@ -684,11 +692,49 @@
 						branch2.commit();
 						branch2.commit();
 						branch2.merge(master);
-		</script>
+	</script>
 <aside class="notes">
 	<p>TNow when we merge we have a nice clean history</p>
 </aside>
 </section>
+</section>
+<!-- **************************       wrap up         ************************** -->
+<section>
+	<section class="middle">
+		<h1>So...</h1>
+		<aside class="notes">
+			<p>what next?</p>
+		</aside>
+	</section>
+	<section class="left">
+		<h2>Notes...</h2>
+		<h6>Branching, merging, rebasing</h6>
+		<ul class="small">
+			<li><a class="small" href="https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging">https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging</a></li>
+			<li><a class="small" href="https://git-scm.com/docs/git-rebase">https://git-scm.com/docs/git-rebase</a></li>
+			<li><a class="small" href="https://www.atlassian.com/git/tutorials/merging-vs-rebasing">https://www.atlassian.com/git/tutorials/merging-vs-rebasing</a></li>
+		</ul>
+		<h6>Workflows</h6>
+		<ul class="small">
+			<li><a class="small" href="https://guides.github.com/introduction/flow/">https://guides.github.com/introduction/flow/</a></li>
+			<li><a class="small" href="https://www.atlassian.com/git/tutorials/comparing-workflows">https://www.atlassian.com/git/tutorials/comparing-workflows</a></li>
+			<!--<li><a class="small" href=""></a></li>-->
+		</ul>
+		<h6>Aliases</h6>
+		<ul class="small">
+			<li><a class="small" href="http://haacked.com/archive/2014/07/28/github-flow-aliases/">http://haacked.com/archive/2014/07/28/github-flow-aliases/</a></li>
+			<li><a class="small" href="http://haacked.com/archive/2015/06/29/git-migrate/">http://haacked.com/archive/2015/06/29/git-migrate/</a></li>
+		</ul>
+		<aside class="notes">
+			<p>Some links for more info, details on commands, ...</p>
+		</aside>
+	</section>
+	<section class="middle">
+		<h2><a href="http://git-ready.faux.ninja">git-ready.faux.ninja</a></h2>
+		<aside class="notes">
+			<p>Here's a link to the presentation :-)</p>
+		</aside>
+	</section>
 </section>
 </div>
 </div>
