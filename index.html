@@ -1,0 +1,224 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>reveal.js</title>
+
+	<link rel="stylesheet" href="css/reveal.css">
+	<link rel="stylesheet" href="css/theme/black.code.css">
+	<!-- Theme used for syntax highlighting of code -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+
+	<!-- gitgraph.js -->
+	<script src="bower_components/gitgraph.js/src/gitgraph.js"></script>
+	<link rel="stylesheet" type="text/css" href="bower_components/gitgraph.js/src/gitgraph.css" />
+
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement('link');
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+		document.getElementsByTagName('head')[0].appendChild(link);
+	</script>
+
+<script>
+		var graphConfig = new GitGraph.Template({
+			branch: {
+				color: "#999",
+				lineWidth: 3,
+				spacingX: 60,
+				mergeStyle: "straight",
+				showLabel: true,                // display branch names on graph
+				labelFont: "normal 10pt Arial",
+				labelRotation: 0
+			},
+			commit: {
+				spacingY: -70,
+				dot: {
+					size: 16,
+					// strokeColor: "#999",
+					strokeWidth: 0
+				},
+				tag: {
+					font: "normal 10pt Arial",
+					color: "yellow"
+				},
+				message: {
+					color: "#999",
+					font: "normal 12pt Arial",
+					displayAuthor: false,
+					displayBranch: false,
+					displayHash: false,
+				}
+			},
+			arrow: {
+				size: 8,
+				offset: 0
+			}
+		});
+
+
+
+
+		// You can manually fix columns to control the display.
+		var featureCol = 0;
+		var developCol = 1;
+		var releaseCol = 2;
+		var supportCol = 3;
+		var masterCol = 4;
+</script>
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section class="middle">
+				<section>
+					<h1>git ready</h1>
+					<aside class="notes">I liked Nava's idea of #click# "git master"</aside>
+				</section>
+				<section>
+					<h1>git master</h1>
+					<aside class="notes">... but I'm not. Was going to be #click#</aside>
+				</section>
+				<section>
+					<h2>hard won lessons</h2>
+					<h2>with git</h2>
+					<aside class="notes">... but why pass up a pun :-)</aside>
+				</section>
+				<section>
+					<h1>git ready</h1>
+					<p>git theory in 5 minutes.</p>
+					<p>hold on to your hats...</p>
+					<aside class="notes">... but why pass up a pun :-)</aside>
+				</section>
+			</section>
+			<section>
+				<section class="middle">
+					<h1>git recap</h1>
+				</section>
+				<section>
+					TODO - diagram of commits and branches
+					<ul>
+						<li>commit - describes a diff against a parent</li>
+						<li>branch - pointer to a commit</li>
+						<li>when "on" a branch, committing moves the pointer with you</li>
+						<ul>
+							<li>show two branches at same point, add commit and advance branch</li>
+						</ul>
+					</ul>
+				</section>
+				<section class="left">
+					<h2>commits and branches</h2>
+					<canvas id="gitrecap-commits"></canvas>
+					<script>
+						var gitgraph = new GitGraph({
+							template: graphConfig,
+							elementId: "gitrecap-commits",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit()
+							.commit()
+					</script>
+</section>
+<section class="left">
+	<h2>commits and branches</h2>
+	<canvas id="gitrecap-commits2"></canvas>
+	<script>
+						var gitgraph = new GitGraph({
+							template: graphConfig,
+							elementId: "gitrecap-commits2",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit().commit();
+						master.branch("branch1").commit()
+
+	</script>
+</section>
+<section>
+	TODO diagram of merging
+	<ul>
+		<li>Show master and branch1 that is ahead</li>
+		<ul>
+			<li>Show branch1 off to the side</li>
+			<li>FF-merge</li>
+		</ul>
+		<li>Show two branches that have diverged</li>
+		<ul>
+			<li>merge commit</li>
+			<ul>
+				<li>two parents</li>
+				<li>two branches, common ancestor (3-way merge)</li>
+			</ul>
+		</ul>
+	</ul>
+</section>
+
+<section>
+	<h2>merging</h2>
+	<canvas id="gitrecap-merging"></canvas>
+	<script>
+						var gitgraph = new GitGraph({
+							template: graphConfig,
+							reverseArrow: false,
+							elementId: "gitrecap-merging",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit();
+						var branch1 = master.branch("branch1");
+						master.commit();
+						branch1.commit();
+	</script>
+</section>
+<section>
+	<h2>merging</h2>
+	<canvas id="gitrecap-merging2"></canvas>
+	<script>
+						var gitgraph = new GitGraph({
+							template: graphConfig,
+							reverseArrow: false,
+							elementId: "gitrecap-merging2",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit();
+						var branch1 = master.branch("branch1");
+						master.commit();
+						branch1.commit();
+						branch1.merge(master);
+	</script>
+</section>
+</div>
+</div>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.js"></script>
+
+<script>
+						// More info https://github.com/hakimel/reveal.js#configuration
+						Reveal.initialize({
+							history: true,
+							transition: "fade",
+							// More info https://github.com/hakimel/reveal.js#dependencies
+							dependencies: [
+								{ src: 'plugin/markdown/marked.js' },
+								{ src: 'plugin/markdown/markdown.js' },
+								{ src: 'plugin/notes/notes.js', async: true },
+								{ src: 'plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } }
+							]
+						});
+</script>
+</body>
+
+</html>
