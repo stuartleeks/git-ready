@@ -374,12 +374,11 @@
 						branch1.commit();
 						branch2.commit();
 						branch1.commit();
-						branch1.merge(master);
 						branch2.commit();
 		</script>
 <aside class="notes">
 	<p>Each feature isolated... still cost of branches (staleness)</p>
-	<p>feature2 now drifting from master</p>
+	<p>now when we merge feature1 #click#</p>
 </aside>
 </section>
 <section class="left">
@@ -401,11 +400,9 @@
 						branch1.commit();
 						branch1.merge(master);
 						branch2.commit();
-						master.merge(branch2);
-						branch2.commit();
-	</script>
+		</script>
 <aside class="notes">
-	<p>Could merge master into feature 2 to resolve drift and continue</p>
+	<p>feature2 is drifting from master</p>
 </aside>
 </section>
 <section class="left">
@@ -429,6 +426,32 @@
 						branch2.commit();
 						master.merge(branch2);
 						branch2.commit();
+	</script>
+<aside class="notes">
+	<p>Could merge master into feature 2 to resolve drift and continue</p>
+</aside>
+</section>
+<section class="left">
+	<h2>branch per feature</h2>
+	<canvas id="gitrecap-bpf-4"></canvas>
+	<script>
+						var gitgraph = new GitGraph({
+							template: graphConfig,
+							elementId: "gitrecap-bpf-4",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit().commit();
+						var branch1 = master.branch("feature1");
+						var branch2 = master.branch("feature2");
+						branch1.commit();
+						branch2.commit();
+						branch1.commit();
+						branch1.merge(master);
+						branch2.commit();
+						master.merge(branch2);
+						branch2.commit();
 						master.commit();
 	</script>
 <aside class="notes">
@@ -438,11 +461,11 @@
 </section>
 <section class="left">
 	<h2>branch per feature</h2>
-	<canvas id="gitrecap-bpf-4"></canvas>
+	<canvas id="gitrecap-bpf-5"></canvas>
 	<script>
 						var gitgraph = new GitGraph({
 							template: graphConfigSmall,
-							elementId: "gitrecap-bpf-4",
+							elementId: "gitrecap-bpf-5",
 							orientation: "horizontal",
 							mode: "compact"
 						});
