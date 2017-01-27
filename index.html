@@ -116,13 +116,17 @@
 				</section>
 				<section data-transition="slide">
 					<h1>git master</h1>
+					<aside class="notes">Does anyone consider themselves git master? (take a quiet rest, but pretend to be interested ;-))</aside>
+				</section>
+				<!--<section data-transition="slide">
+					<h1>git master</h1>
 					<aside class="notes">... but I'm not. Original idea was #click#</aside>
 				</section>
 				<section data-transition="slide">
 					<h2>hard won lessons</h2>
 					<h2>with git</h2>
 					<aside class="notes">... but why pass up a pun :-)</aside>
-				</section>
+				</section>-->
 				<section data-transition="slide">
 					<h1>git ready</h1>
 					<p>git theory in 5 minutes.</p>
@@ -134,6 +138,11 @@
 			<section>
 				<section class="middle">
 					<h1>git recap</h1>
+					<aside class="notes">High speed recap on git concepts</aside>
+				</section>
+				<section class="middle">
+					<h1>git recap</h1>
+					<p>at x2 speed</p>
 					<aside class="notes">High speed recap on git concepts</aside>
 				</section>
 				<section class="left">
@@ -319,6 +328,365 @@
 <aside class="notes">
 	<p>Merge commit:</p>
 	<p>git creates commit with 2 parents that combines all commits/diffs</p>
+</aside>
+</section>
+</section>
+<!-- **************************       workflows         ************************** -->
+<section>
+	<section class="middle">
+		<h1>workflows</h1>
+		<aside class="notes">Various approaches with git...</aside>
+	</section>
+</section>
+<section>
+	<section class="middle">
+		<h1>free for all</h1>
+		<aside class="notes">
+			<p>Single repo, all work in same branch</p>
+			<p>Works as well in git as in any other source control ;-)</p>
+		</aside>
+	</section>
+	<section class="middle">
+		<h1>branch per feature</h1>
+	</section>
+	<section class="left">
+		<h2>branch per feature</h2>
+		<canvas id="gitrecap-bpf-1"></canvas>
+		<script>
+						var gitgraph = new GitGraph({
+							template: graphConfig,
+							elementId: "gitrecap-bpf-1",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit().commit();
+						var branch1 = master.branch("feature1");
+						var branch2 = master.branch("feature2");
+						branch1.commit();
+						branch2.commit();
+						branch1.commit();
+						branch1.merge(master);
+						branch2.commit();
+		</script>
+<aside class="notes">
+	<p>Each feature isolated... still cost of branches (staleness)</p>
+	<p>feature2 now drifting from master</p>
+</aside>
+</section>
+<section class="left">
+	<h2>branch per feature</h2>
+	<canvas id="gitrecap-bpf-2"></canvas>
+	<script>
+						var gitgraph = new GitGraph({
+							template: graphConfig,
+							elementId: "gitrecap-bpf-2",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit().commit();
+						var branch1 = master.branch("feature1");
+						var branch2 = master.branch("feature2");
+						branch1.commit();
+						branch2.commit();
+						branch1.commit();
+						branch1.merge(master);
+						branch2.commit();
+						master.merge(branch2);
+						branch2.commit();
+	</script>
+<aside class="notes">
+	<p>Could merge master into feature 2 to resolve drift and continue</p>
+</aside>
+</section>
+<section class="left">
+	<h2>branch per feature</h2>
+	<canvas id="gitrecap-bpf-3"></canvas>
+	<script>
+						var gitgraph = new GitGraph({
+							template: graphConfig,
+							elementId: "gitrecap-bpf-3",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit().commit();
+						var branch1 = master.branch("feature1");
+						var branch2 = master.branch("feature2");
+						branch1.commit();
+						branch2.commit();
+						branch1.commit();
+						branch1.merge(master);
+						branch2.commit();
+						master.merge(branch2);
+						branch2.commit();
+						master.commit();
+	</script>
+<aside class="notes">
+	<p>Works!</p>
+	<p>Can be harder to understand history over time</p>
+</aside>
+</section>
+<section class="left">
+	<h2>branch per feature</h2>
+	<canvas id="gitrecap-bpf-4"></canvas>
+	<script>
+						var gitgraph = new GitGraph({
+							template: graphConfigSmall,
+							elementId: "gitrecap-bpf-4",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit().commit();
+						var branch1 = master.branch("feature1");
+						var branch2 = master.branch("feature2");
+						branch1.commit();
+						branch2.commit();
+						branch1.commit();
+						var branch3 = master.branch("feature3");
+
+						branch3.commit();
+						branch1.merge(master);
+						branch2.commit();
+						branch3.commit();
+
+						master.merge(branch2);
+						master.merge(branch3);
+						branch2.commit();
+						master.commit();
+
+						branch3.merge(master);
+						branch2.commit();
+						master.merge(branch2);
+						branch2.commit();
+
+						branch2.merge(master);						
+	</script>
+<aside class="notes">
+	<p>Works!</p>
+	<p>Can be harder to understand history over time</p>
+</aside>
+</section>
+</section>
+<!-- **************************       rebase         ************************** -->
+<section>
+	<section class="middle">
+		<h1>git rebase</h1>
+		<aside class="notes">
+			<p>Alternative... git's secret sauce (IMO): rebase!</p>
+		</aside>
+	</section>
+	<section class="left">
+		<h1>git rebase</h1>
+		<canvas id="gitrecap-rebase1"></canvas>
+		<script>
+						var gitgraph = new GitGraph({
+							template: graphConfig,
+							elementId: "gitrecap-rebase1",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit().commit();
+						var branch1 = master.branch("branch1");
+						branch1.commit();
+						master.commit().commit();
+						branch1.commit();
+		</script>
+<aside class="notes">
+	<p>Let's come back to simple case...</p>
+	<p>Have branch1, but master has moved on.</p>
+	<p>This is where we merged to update branch1</p>
+</aside>
+</section>
+<section class="left">
+	<h1>git rebase</h1>
+	<canvas id="gitrecap-rebase2"></canvas>
+	<script>
+						var gitgraph = new GitGraph({
+							template: graphConfig,
+							elementId: "gitrecap-rebase2",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit().commit();
+						var branch1 = master.branch("branch1");
+						branch1.commit({ dotStrokeWidth: 10, dotStrokeColor: "white" });
+						master.commit().commit();
+						branch1.commit({ dotStrokeWidth: 10, dotStrokeColor: "white" });
+	</script>
+<aside class="notes">
+	<p>branch1 has two commits/changes</p>
+	<p>git rebase lets us take then and apply to latest master...</p>
+</aside>
+</section>
+<section class="left">
+	<h1>git rebase</h1>
+	<canvas id="gitrecap-rebased"></canvas>
+	<script>
+						var gitgraph = new GitGraph({
+							template: graphConfig,
+							elementId: "gitrecap-rebased",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit().commit();
+						var branch1Old = master.branch("branch1-old");
+						branch1Old.commit({ dotStrokeWidth: 10, dotStrokeColor: "grey" });
+						master.commit().commit();
+						branch1Old.commit({ dotStrokeWidth: 10, dotStrokeColor: "grey" });
+						var branch1 = master.branch({name:"branch1", column:1});
+						branch1.commit({ dotStrokeWidth: 10, dotStrokeColor: "white" });
+						branch1.commit({ dotStrokeWidth: 10, dotStrokeColor: "white" });
+	</script>
+<aside class="notes">
+	<p>Get the same end code, but cleaner history</p>
+</aside>
+</section>
+</section>
+<!-- **************************       rebase         ************************** -->
+<section>
+	<section class="middle">
+		<h1>git rebase</h1>
+		<h2>...applied</h2>
+		<aside class="notes">
+			<p>So, that's the theory...</p>
+		</aside>
+	</section>
+	<section class="left">
+		<h2>branch per feature</h2>
+		<canvas id="gitrecap-bpf-rebase1"></canvas>
+		<script>
+						var gitgraph = new GitGraph({
+							template: graphConfig,
+							elementId: "gitrecap-bpf-rebase1",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit().commit();
+						var branch1 = master.branch("feature1");
+						var branch2 = master.branch("feature2");
+						branch1.commit();
+						branch2.commit();
+						branch1.commit();
+						branch1.merge(master);
+						branch2.commit();
+						master.merge(branch2);
+						branch2.commit();
+						master.commit();
+		</script>
+<aside class="notes">
+	<p>This was the merge-to-update</p>
+</aside>
+</section>
+<section class="left">
+	<h2>branch per feature</h2>
+	<canvas id="gitrecap-bpf-rebase2"></canvas>
+	<script>
+						var gitgraph = new GitGraph({
+							template: graphConfig,
+							elementId: "gitrecap-bpf-rebase2",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit().commit();
+						var branch1 = master.branch("feature1");
+						var branch2 = master.branch("feature2");
+						branch1.commit();
+						branch2.commit();
+						branch1.commit();
+						branch1.merge(master);
+						branch2.commit();
+						master.commit();
+		</script>
+<aside class="notes">
+	<p>Take out the merge... need to sync with master...</p>
+</aside>
+</section>
+<section class="left">
+	<h2>branch per feature</h2>
+	<canvas id="gitrecap-bpf-rebase3"></canvas>
+	<script>
+						var gitgraph = new GitGraph({
+							template: graphConfig,
+							elementId: "gitrecap-bpf-rebase3",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit().commit();
+						var branch1 = master.branch("feature1");
+						var branch2 = master.branch("feature2");
+						branch1.commit();
+						branch2.commit({ dotStrokeWidth: 10, dotStrokeColor: "white" });
+						branch1.commit();
+						branch1.merge(master);
+						branch2.commit({ dotStrokeWidth: 10, dotStrokeColor: "white" });
+						master.commit();
+		</script>
+<aside class="notes">
+	<p>This was the merge-to-update</p>
+</aside>
+</section>
+<section class="left">
+	<h2>branch per feature</h2>
+	<canvas id="gitrecap-bpf-rebase4"></canvas>
+	<script>
+						var gitgraph = new GitGraph({
+							template: graphConfig,
+							elementId: "gitrecap-bpf-rebase4",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit().commit();
+						var branch1 = master.branch("feature1");
+						var branch2old = master.branch("feature2-old");
+						branch1.commit();
+						branch2old.commit({ dotStrokeWidth: 10, dotStrokeColor: "grey" });
+						branch1.commit();
+						branch1.merge(master);
+						branch2old.commit({ dotStrokeWidth: 10, dotStrokeColor: "grey" });
+						master.commit();
+						var branch2 = master.branch({ name: "feature2", column: 2 });
+						branch2.commit({ dotStrokeWidth: 10, dotStrokeColor: "white" });
+						branch2.commit({ dotStrokeWidth: 10, dotStrokeColor: "white" });
+
+		</script>
+<aside class="notes">
+	<p>This was the merge-to-update</p>
+</aside>
+</section>
+<section class="left">
+	<h2>branch per feature</h2>
+	<canvas id="gitrecap-bpf-rebase5"></canvas>
+	<script>
+						var gitgraph = new GitGraph({
+							template: graphConfig,
+							elementId: "gitrecap-bpf-rebase5",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit().commit();
+						var branch1 = master.branch("feature1");
+						branch1.commit();
+						branch1.commit();
+						branch1.merge(master);
+						master.commit();
+						var branch2 = master.branch({ name: "feature2", column: 1 });
+						branch2.commit();
+						branch2.commit();
+						branch2.merge(master);
+		</script>
+<aside class="notes">
+	<p>This was the merge-to-update</p>
 </aside>
 </section>
 </section>
