@@ -246,11 +246,12 @@
 						});
 						var master = gitgraph.branch("master");
 						master.commit().commit();
-						master.branch("branch1").commit();
-						master.commit();
+						var branch1 = master.branch("branch1");
+						branch1.commit();
+						branch1.commit();
 
 	</script>
-<aside class="notes">...</aside>
+<aside class="notes">Can add commits to branch1</aside>
 </section>
 <section class="left">
 	<h2>commits and branches</h2>
@@ -266,10 +267,11 @@
 						master.commit().commit();
 						var branch1 = master.branch("branch1");
 						branch1.commit();
-						master.commit();
 						branch1.commit();
+						master.commit();
 	</script>
 <aside class="notes">
+	<p>But also to master</p>
 	<p>But now we branches that have diverged. To combine we can use a merge commit...</p>
 </aside>
 </section>
@@ -287,8 +289,8 @@
 						master.commit().commit();
 						var branch1 = master.branch("branch1");
 						branch1.commit();
-						master.commit({ dotStrokeWidth: 10, dotStrokeColor: "white" });
 						branch1.commit({ dotStrokeWidth: 10, dotStrokeColor: "white" });
+						master.commit({ dotStrokeWidth: 10, dotStrokeColor: "white" });
 	</script>
 <aside class="notes">
 	<p>Want to merge branch1 into master (highlighted)</p>
@@ -308,8 +310,8 @@
 						master.commit().commit({ dotStrokeWidth: 10, dotStrokeColor: "white" });
 						var branch1 = master.branch("branch1");
 						branch1.commit();
-						master.commit({ dotStrokeWidth: 10, dotStrokeColor: "white" });
 						branch1.commit({ dotStrokeWidth: 10, dotStrokeColor: "white" });
+						master.commit({ dotStrokeWidth: 10, dotStrokeColor: "white" });
 	</script>
 <aside class="notes">
 	<p>3-way merge: branches and common ancestor (highlighted)</p>
@@ -329,8 +331,8 @@
 						master.commit().commit();
 						var branch1 = master.branch("branch1");
 						branch1.commit();
-						master.commit();
 						branch1.commit();
+						master.commit();
 						branch1.merge(master);
 	</script>
 <aside class="notes">
