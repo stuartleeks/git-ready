@@ -345,7 +345,21 @@
 		<h1>workflows</h1>
 		<aside class="notes">Various approaches with git...</aside>
 	</section>
+	<section class="left">
+		<h2>workflows</h2>
+		<ul>
+			<li>centralised
+			<ul>
+				<li>free for all</li>
+				<li>branch per feature</li>
+			</ul></li>
+			<li>de-centralised<ul>
+			<li>forks and pull requests</li></ul></li>
+			<li>("successful branching model")</li>
+		</ul>
+	</section>
 </section>
+<!-- **************************       workflow: free for all       ************************** -->
 <section>
 	<section class="middle">
 		<h1>free for all</h1>
@@ -354,6 +368,9 @@
 			<p>Works as well in git as in any other source control ;-)</p>
 		</aside>
 	</section>
+</section>
+<!-- **************************       workflow: branch per feature       ************************** -->
+<section>
 	<section class="middle">
 		<h1>branch per feature</h1>
 	</section>
@@ -400,7 +417,7 @@
 						branch1.commit();
 						branch1.merge(master);
 						branch2.commit();
-		</script>
+	</script>
 <aside class="notes">
 	<p>feature2 is drifting from master</p>
 </aside>
