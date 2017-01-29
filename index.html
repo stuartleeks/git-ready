@@ -132,14 +132,8 @@
 						<p>going to cover some things I've worked through beyond the basics</p>
 						<p>Quite easy to get up to speed with git add/commit etc</p>
 						<p>complexity comes when working in teams or OSS!</p>
-						<p>Let's start by looking at #click# git's special sauce</p>
+						<p>Let's start by looking at an example with branch per feature</p>
 					</aside>
-				</section>
-			</section>
-			<!-- **************************       rebase - secret sauce         ************************** -->
-			<section>
-				<section class="middle" data-transition="slide">
-					<h1>git rebase</h1>
 				</section>
 			</section>
 			<!-- **************************       workflow: branch per feature       ************************** -->
@@ -365,7 +359,7 @@
 						branch2.commit({ dotStrokeWidth: 10, dotStrokeColor: "white" });
 	</script>
 <aside class="notes">
-	<p>This was the merge-to-update</p>
+	<p>Here we see the changes we've made on feature2</p>
 </aside>
 </section>
 <section class="left">
@@ -393,7 +387,9 @@
 
 	</script>
 <aside class="notes">
-	<p>This was the merge-to-update</p>
+	<p>We can ask git to replay those changes on latest master</p>
+	<p>This is rebase!</p>
+	<p>Now we can go ahead and merge to master...</p>
 </aside>
 </section>
 <section class="left">
@@ -422,7 +418,8 @@
 
 	</script>
 <aside class="notes">
-	<p>This was the merge-to-update</p>
+	<p>Still showing the old commits to illustrate</p>
+	<p>If we remove these...</p>
 </aside>
 </section>
 <section class="left">
@@ -447,7 +444,7 @@
 						branch2.merge(master);
 	</script>
 <aside class="notes">
-	<p>Now when we merge we have a nice clean history</p>
+	<p>...we have a nice clean history</p>
 </aside>
 </section>
 </section>
@@ -458,7 +455,7 @@
 		<h3 class="fragment" data-fragment-index="1">keep it clean.</h3>
 		<aside class="notes">
 			<p>So.. rebase can move commits to a new base point</p>
-			<p>Helps to keep things easy for reviewer - good thing to do!</p>
+			<p>Helps to keep things easy for reviewer of PR - good thing to do!</p>
 			<p>On that note, also favour multiple PRs over on large PR with several unrelated changes</p>
 			<p>"rebase early, rebase often"</p>
 		</aside>
