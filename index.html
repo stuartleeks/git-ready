@@ -130,263 +130,62 @@
 				<section data-transition="slide">
 					<h2>hard won lessons</h2>
 					<h2>with git</h2>
-					<aside class="notes">Not a master, but here are the things I think I've figured out as a former TFS/SVN user</aside>
-				</section>
-				<section data-transition="slide">
-					<h1>git ready</h1>
-					<p>git theory in 5 minutes.</p>
-					<p>hold on to your hats...</p>
 					<aside class="notes">
+						<p>Not a master, but here are the things I think I've figured out as a former TFS/SVN user</p>
 						<p>This is just git theory/concepts (not command usage!)</p>
-						<p>Buckle up ;-)</p>
 					</aside>
 				</section>
 			</section>
-			<!-- **************************       Recap         ************************** -->
+			<!-- **************************       workflows         ************************** -->
 			<section>
 				<section class="middle">
-					<h1>git recap</h1>
-					<aside class="notes">High speed recap on git concepts</aside>
-				</section>
-				<section class="middle">
-					<h1>git recap</h1>
-					<p>at x2 speed</p>
-					<aside class="notes">High speed recap on git concepts</aside>
+					<h1>workflows</h1>
+					<aside class="notes">
+						<p>Quite easy to get up to speed with git basics (commit etc)</p>
+						<p>complexity comes when working in teams!</p>
+						<p>Various approaches with git...</p>
+					</aside>
 				</section>
 				<section class="left">
-					<h2>commits</h2>
-					<canvas id="gitrecap-commits-big"></canvas>
+					<h2>workflows</h2>
+					<ul>
+						<li>centralised
+							<ul>
+								<li>free for all</li>
+								<li>branch per feature</li>
+							</ul>
+						</li>
+						<li>de-centralised
+							<ul>
+								<li>forks and pull requests</li>
+							</ul>
+						</li>
+						<li>("successful branching model")</li>
+					</ul>
+					<aside class="notes">
+						<p>Various workflows. start simple :-)</p>
+					</aside>
+				</section>
+			</section>
+			<!-- **************************       workflow: free for all       ************************** -->
+			<section>
+				<section class="middle">
+					<h1>free for all</h1>
+					<aside class="notes">
+						<p>Single repo, all work in same branch</p>
+						<p>Works as well in git as in any other source control ;-)</p>
+					</aside>
+				</section>
+			</section>
+			<!-- **************************       workflow: branch per feature       ************************** -->
+			<section>
+				<section class="middle">
+					<h1>branch per feature</h1>
+				</section>
+				<section class="left">
+					<h2>branch per feature</h2>
+					<canvas id="gitrecap-bpf-1"></canvas>
 					<script>
-						var gitgraph = new GitGraph({
-							template: graphConfig,
-							elementId: "gitrecap-commits-big",
-							orientation: "horizontal",
-							mode: "compact"
-						});
-						var master = gitgraph.branch("master");
-						master.commit().commit().commit().commit().commit().commit().commit().commit().commit().commit();
-					</script>
-<aside class="notes">Each commit has parent and diffs. Linear like this is great... but doesn't happen in teams ;-)</aside>
-</section>
-<section class="left">
-	<h2>commits and branches</h2>
-	<canvas id="gitrecap-commits-big2"></canvas>
-	<script>
-						var gitgraph = new GitGraph({
-							template: graphConfigSmall,
-							elementId: "gitrecap-commits-big2",
-							orientation: "horizontal",
-							mode: "compact"
-						});
-						var master = gitgraph.branch("master");
-						master.commit().commit();
-						var a = master.branch();
-						var b = master.branch();
-						a.commit();
-						b.commit().commit();
-						a.commit();
-						var c = b.branch().commit().commit();
-						a.merge(b);
-						b.commit().commit();
-						c.merge(b);
-						b.commit();
-						master.commit();
-						a.commit()
-						master.commit();
-						b.merge(a);
-						a.merge(master);
-	</script>
-<aside class="notes">
-	<p>More likely to end up with something like this!</p>
-	<p>Each dot is a commit: parent and changes. Good to keep this in mind for the next few minutes!</p>
-</aside>
-</section>
-<section class="left">
-	<h2>commits and branches</h2>
-	<canvas id="gitrecap-commits"></canvas>
-	<script>
-						var gitgraph = new GitGraph({
-							template: graphConfig,
-							elementId: "gitrecap-commits",
-							orientation: "horizontal",
-							mode: "compact"
-						});
-						var master = gitgraph.branch("master");
-						master.commit()
-							.commit();
-	</script>
-<aside class="notes">Strip it back...</aside>
-</section>
-<section class="left">
-	<h2>commits and branches</h2>
-	<canvas id="gitrecap-commits2"></canvas>
-	<script>
-						var gitgraph = new GitGraph({
-							template: graphConfig,
-							elementId: "gitrecap-commits2",
-							orientation: "horizontal",
-							mode: "compact"
-						});
-						var master = gitgraph.branch("master");
-						master.commit().commit();
-						master.branch("branch1").commit();
-
-	</script>
-<aside class="notes">create a branch. Now two pointers, each can advance independently</aside>
-</section>
-<section class="left">
-	<h2>commits and branches</h2>
-	<canvas id="gitrecap-commits3"></canvas>
-	<script>
-						var gitgraph = new GitGraph({
-							template: graphConfig,
-							elementId: "gitrecap-commits3",
-							orientation: "horizontal",
-							mode: "compact"
-						});
-						var master = gitgraph.branch("master");
-						master.commit().commit();
-						var branch1 = master.branch("branch1");
-						branch1.commit();
-						branch1.commit();
-
-	</script>
-<aside class="notes">Can add commits to branch1</aside>
-</section>
-<section class="left">
-	<h2>commits and branches</h2>
-	<canvas id="gitrecap-commits4"></canvas>
-	<script>
-						var gitgraph = new GitGraph({
-							template: graphConfig,
-							elementId: "gitrecap-commits4",
-							orientation: "horizontal",
-							mode: "compact"
-						});
-						var master = gitgraph.branch("master");
-						master.commit().commit();
-						var branch1 = master.branch("branch1");
-						branch1.commit();
-						branch1.commit();
-						master.commit();
-	</script>
-<aside class="notes">
-	<p>But also to master</p>
-	<p>But now we branches that have diverged. To combine we can use a merge commit...</p>
-</aside>
-</section>
-<section class="left">
-	<h2>merging</h2>
-	<canvas id="gitrecap-merge"></canvas>
-	<script>
-						var gitgraph = new GitGraph({
-							template: graphConfig,
-							elementId: "gitrecap-merge",
-							orientation: "horizontal",
-							mode: "compact"
-						});
-						var master = gitgraph.branch("master");
-						master.commit().commit();
-						var branch1 = master.branch("branch1");
-						branch1.commit();
-						branch1.commit({ dotStrokeWidth: 10, dotStrokeColor: "white" });
-						master.commit({ dotStrokeWidth: 10, dotStrokeColor: "white" });
-	</script>
-<aside class="notes">
-	<p>Want to merge branch1 into master (highlighted)</p>
-</aside>
-</section>
-<section class="left">
-	<h2>merging</h2>
-	<canvas id="gitrecap-merge2"></canvas>
-	<script>
-						var gitgraph = new GitGraph({
-							template: graphConfig,
-							elementId: "gitrecap-merge2",
-							orientation: "horizontal",
-							mode: "compact"
-						});
-						var master = gitgraph.branch("master");
-						master.commit().commit({ dotStrokeWidth: 10, dotStrokeColor: "white" });
-						var branch1 = master.branch("branch1");
-						branch1.commit();
-						branch1.commit({ dotStrokeWidth: 10, dotStrokeColor: "white" });
-						master.commit({ dotStrokeWidth: 10, dotStrokeColor: "white" });
-	</script>
-<aside class="notes">
-	<p>3-way merge: branches and common ancestor (highlighted)</p>
-</aside>
-</section>
-<section class="left">
-	<h2>merging</h2>
-	<canvas id="gitrecap-merged"></canvas>
-	<script>
-						var gitgraph = new GitGraph({
-							template: graphConfig,
-							elementId: "gitrecap-merged",
-							orientation: "horizontal",
-							mode: "compact"
-						});
-						var master = gitgraph.branch("master");
-						master.commit().commit();
-						var branch1 = master.branch("branch1");
-						branch1.commit();
-						branch1.commit();
-						master.commit();
-						branch1.merge(master);
-	</script>
-<aside class="notes">
-	<p>Merge commit:</p>
-	<p>git creates commit with 2 parents that combines all commits/diffs</p>
-</aside>
-</section>
-</section>
-<!-- **************************       workflows         ************************** -->
-<section>
-	<section class="middle">
-		<h1>workflows</h1>
-		<aside class="notes">Various approaches with git...</aside>
-	</section>
-	<section class="left">
-		<h2>workflows</h2>
-		<ul>
-			<li>centralised
-				<ul>
-					<li>free for all</li>
-					<li>branch per feature</li>
-				</ul>
-			</li>
-			<li>de-centralised
-				<ul>
-					<li>forks and pull requests</li>
-				</ul>
-			</li>
-			<li>("successful branching model")</li>
-		</ul>
-		<aside class="notes">
-			<p>Various workflows. start simple :-)</p>
-		</aside>
-	</section>
-</section>
-<!-- **************************       workflow: free for all       ************************** -->
-<section>
-	<section class="middle">
-		<h1>free for all</h1>
-		<aside class="notes">
-			<p>Single repo, all work in same branch</p>
-			<p>Works as well in git as in any other source control ;-)</p>
-		</aside>
-	</section>
-</section>
-<!-- **************************       workflow: branch per feature       ************************** -->
-<section>
-	<section class="middle">
-		<h1>branch per feature</h1>
-	</section>
-	<section class="left">
-		<h2>branch per feature</h2>
-		<canvas id="gitrecap-bpf-1"></canvas>
-		<script>
 						var gitgraph = new GitGraph({
 							template: graphConfig,
 							elementId: "gitrecap-bpf-1",
@@ -401,7 +200,7 @@
 						branch2.commit();
 						branch1.commit();
 						branch2.commit();
-		</script>
+					</script>
 <aside class="notes">
 	<p>Each feature isolated... still cost of branches (staleness)</p>
 	<p>now when we merge feature1 #click#</p>
@@ -435,23 +234,23 @@
 	<h2>branch per feature</h2>
 	<canvas id="gitrecap-bpf-3"></canvas>
 	<script>
-						var gitgraph = new GitGraph({
-							template: graphConfig,
-							elementId: "gitrecap-bpf-3",
-							orientation: "horizontal",
-							mode: "compact"
-						});
-						var master = gitgraph.branch("master");
-						master.commit().commit();
-						var branch1 = master.branch("feature1");
-						var branch2 = master.branch("feature2");
-						branch1.commit();
-						branch2.commit();
-						branch1.commit();
-						branch1.merge(master);
-						branch2.commit();
-						master.merge(branch2);
-						branch2.commit();
+			var gitgraph = new GitGraph({
+				template: graphConfig,
+				elementId: "gitrecap-bpf-3",
+				orientation: "horizontal",
+				mode: "compact"
+			});
+			var master = gitgraph.branch("master");
+			master.commit().commit();
+			var branch1 = master.branch("feature1");
+			var branch2 = master.branch("feature2");
+			branch1.commit();
+			branch2.commit();
+			branch1.commit();
+			branch1.merge(master);
+			branch2.commit();
+			master.merge(branch2);
+			branch2.commit();
 	</script>
 <aside class="notes">
 	<p>Could merge master into feature 2 to resolve drift and continue</p>
@@ -808,7 +607,7 @@
 						});
 						var master = gitgraph.branch("master");
 						master.commit().commit();
-		</script>
+	</script>
 <p>origin (your fork)</p>
 <canvas id="gitrecap-fpr-2-b"></canvas>
 <script>
@@ -840,7 +639,7 @@
 						var master = gitgraph.branch("master");
 						master.commit().commit();
 						var branch1 = master.branch("feature1").commit().commit();
-		</script>
+	</script>
 <p>origin (your fork)</p>
 <canvas id="gitrecap-fpr-3-b"></canvas>
 <script>
@@ -874,7 +673,7 @@
 						master.commit().commit();
 						var branch1 = master.branch("feature1").commit().commit();
 						branch1.merge(master);
-		</script>
+	</script>
 <p>origin (your fork)</p>
 <canvas id="gitrecap-fpr-4-b"></canvas>
 <script>
@@ -906,7 +705,7 @@
 						var master = gitgraph.branch("master");
 						master.commit().commit();
 						var branch1 = master.branch("feature1").commit().commit();
-		</script>
+	</script>
 <p>origin (your fork)</p>
 <canvas id="gitrecap-fpr-5-b"></canvas>
 <script>
@@ -939,7 +738,7 @@
 						master.commit().commit();
 						var branch1 = master.branch("feature1").commit().commit();
 						branch1.commit().commit();
-		</script>
+	</script>
 <p>origin (your fork)</p>
 <canvas id="gitrecap-fpr-6-b"></canvas>
 <script>
@@ -975,7 +774,7 @@
 						var branch1 = master.branch("feature1").commit().commit();
 						branch1.commit().commit();
 						branch1.merge(master);
-		</script>
+	</script>
 <p>origin (your fork)</p>
 <canvas id="gitrecap-fpr-7-b"></canvas>
 <script>
@@ -1008,7 +807,7 @@
 						});
 						var master = gitgraph.branch("master");
 						master.commit().commit();
-		</script>
+	</script>
 <p>origin (your fork)</p>
 <canvas id="gitrecap-fpr-8-b"></canvas>
 <script>
@@ -1042,7 +841,7 @@
 						var master = gitgraph.branch("master");
 						master.commit().commit();
 						master.commit().commit();
-		</script>
+	</script>
 <p>origin (your fork)</p>
 <canvas id="gitrecap-fpr-9-b"></canvas>
 <script>
@@ -1076,7 +875,7 @@
 						var master = gitgraph.branch("master");
 						master.commit().commit();
 						master.commit().commit();
-		</script>
+	</script>
 <p>origin (your fork)</p>
 <canvas id="gitrecap-fpr-10-b"></canvas>
 <script>
@@ -1096,14 +895,14 @@
 </script>
 <aside class="notes">
 	<p>First step - pull changes into your repo</p>
-</section>
+	</section>
 
 
-<section class="left">
-	<h2>forks and pull requests</h2>
-	<p>upstream (central)</p>
-	<canvas id="gitrecap-fpr-11-a"></canvas>
-	<script>
+	<section class="left">
+		<h2>forks and pull requests</h2>
+		<p>upstream (central)</p>
+		<canvas id="gitrecap-fpr-11-a"></canvas>
+		<script>
 						var gitgraph = new GitGraph({
 							template: graphConfigSmall,
 							elementId: "gitrecap-fpr-11-a",
