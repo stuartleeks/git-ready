@@ -112,38 +112,51 @@
 			<section class="middle">
 				<section data-transition="slide">
 					<h1>git ready</h1>
-					<aside class="notes">
-						<p>git ready</p>
-						<p>or to use Nava's suggested title #click# "git master"</p>
-					</aside>
+					<aside class="notes"><p>Nava had the cool idea of #click# "git master"</p></aside>
 				</section>
 				<section data-transition="slide">
 					<h1>git master</h1>
 					<aside class="notes">
-						<p>Now, I don't really see myself as a master!</p>
-						<p>I used to be pretty familiar with SVN/TFVC</p>
-						<p>When moved to git it felt alien at first</p>
+						<p>But I don't really see myself as a master!</p>
+						<p>Used to be pretty familiar with TFVC/SVN</p>
+						<p>When moved to git it felt alien at first - now quite like it</p>
 					</aside>
 				</section>
 				<section data-transition="slide">
 					<h2>hard won lessons</h2>
 					<h2>with git</h2>
 					<aside class="notes">
-						<p>going to cover some things I've worked through beyond the basics</p>
+						<p>going to cover the things I've worked through beyond the basics</p>
 						<p>Quite easy to get up to speed with git add/commit etc</p>
 						<p>complexity comes when working in teams or OSS!</p>
-						<p>Let's start by looking at #click# git's special sauce</p>
 					</aside>
 				</section>
 			</section>
-			<!-- **************************       rebase - secret sauce         ************************** -->
+			<!-- **************************       workflows         ************************** -->
 			<section>
-				<section class="middle" data-transition="slide">
-					<h1>git rebase</h1>
+				<section class="middle">
+					<h1>workflows</h1>
+					<aside class="notes">
+						<p>Let's take a quick look and see where git's secret sauce comes in...</p>
+					</aside>
+				</section>
+			</section>
+			<!-- **************************       workflow: free for all       ************************** -->
+			<section>
+				<section class="middle">
+					<h1>free for all</h1>
+					<aside class="notes">
+						<p>Start out with: single repo, all work in same branch</p>
+						<p>Works as well in git as in any other source control ;-)</p>
+						<p>Enough said!</p>
+					</aside>
 				</section>
 			</section>
 			<!-- **************************       workflow: branch per feature       ************************** -->
 			<section>
+				<section class="middle">
+					<h1>branch per feature</h1>
+				</section>
 				<section class="left">
 					<h2>branch per feature</h2>
 					<canvas id="gitrecap-bpf-1"></canvas>
@@ -164,7 +177,6 @@
 						branch2.commit();
 					</script>
 <aside class="notes">
-	<p>Let's show rebase in a common workflow: branch per feature</p>
 	<p>Each feature isolated... cost of branches (staleness)</p>
 	<p>now when we merge feature1 #click#</p>
 </aside>
@@ -288,10 +300,106 @@
 	<p>Can be harder to understand history over time</p>
 </aside>
 </section>
+</section>
+<!-- **************************       rebase         ************************** -->
+<section>
+	<section class="middle">
+		<h1>git's secret sauce</h1>
+	</section>
+	<section class="middle" data-transition="slide">
+		<h1>git rebase</h1>
+	</section>
+	<section class="left">
+		<h1>git rebase</h1>
+		<canvas id="gitrecap-rebase1"></canvas>
+		<script>
+						var gitgraph = new GitGraph({
+							template: graphConfig,
+							elementId: "gitrecap-rebase1",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit().commit();
+						var branch1 = master.branch("branch1");
+						branch1.commit();
+						master.commit().commit();
+						branch1.commit();
+		</script>
+<aside class="notes">
+	<p>to show rebase, let's come back to simple case...</p>
+</aside>
+</section>
 <section class="left">
-	<h2>branch per feature</h2>
-	<canvas id="gitrecap-bpf-rebase1"></canvas>
+	<h1>git rebase</h1>
+	<canvas id="gitrecap-rebase2"></canvas>
 	<script>
+						var gitgraph = new GitGraph({
+							template: graphConfig,
+							elementId: "gitrecap-rebase2",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit().commit();
+						var branch1 = master.branch("branch1");
+						branch1.commit({ dotStrokeWidth: 10, dotStrokeColor: "white" });
+						master.commit().commit();
+						branch1.commit({ dotStrokeWidth: 10, dotStrokeColor: "white" });
+	</script>
+<aside class="notes">
+	<p>branch1 has two commits/changes</p>
+	<p>master has moved on since we branched</p>
+	<p>could merge..</p>
+	<p>git rebase lets us take then and apply to latest master...</p>
+</aside>
+</section>
+<section class="left">
+	<h1>git rebase</h1>
+	<canvas id="gitrecap-rebased"></canvas>
+	<script>
+						var gitgraph = new GitGraph({
+							template: graphConfig,
+							elementId: "gitrecap-rebased",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit().commit();
+						var branch1Old = master.branch("branch1-old");
+						branch1Old.commit({ dotStrokeWidth: 10, dotStrokeColor: "grey" });
+						master.commit().commit();
+						branch1Old.commit({ dotStrokeWidth: 10, dotStrokeColor: "grey" });
+						var branch1 = master.branch({ name: "branch1", column: 1 });
+						branch1.commit({ dotStrokeWidth: 10, dotStrokeColor: "white" });
+						branch1.commit({ dotStrokeWidth: 10, dotStrokeColor: "white" });
+	</script>
+<aside class="notes">
+	<p>Get the same end code as with merge, but cleaner history</p>
+</aside>
+</section>
+<section class="middle">
+	<h1>golden rule</h1>
+	<p>don't rebase public branches</p>
+</section>
+<aside class="notes">
+	<p>Don't rebase public/shared branches - you screw people over!</p>
+</aside>
+</section>
+
+<!-- **************************       rebase applied        ************************** -->
+<section>
+	<section class="middle">
+		<h1>git rebase</h1>
+		<h2>...applied</h2>
+		<aside class="notes">
+			<p>So, that's the theory...</p>
+		</aside>
+	</section>
+	<section class="left">
+		<h2>branch per feature</h2>
+		<canvas id="gitrecap-bpf-rebase1"></canvas>
+		<script>
 						var gitgraph = new GitGraph({
 							template: graphConfig,
 							elementId: "gitrecap-bpf-rebase1",
@@ -369,25 +477,25 @@
 	<h2>branch per feature</h2>
 	<canvas id="gitrecap-bpf-rebase4"></canvas>
 	<script>
-						var gitgraph = new GitGraph({
-							template: graphConfig,
-							elementId: "gitrecap-bpf-rebase4",
-							orientation: "horizontal",
-							mode: "compact"
-						});
-						var master = gitgraph.branch("master");
-						master.commit().commit();
-						var branch1 = master.branch("feature1");
-						var branch2old = master.branch("feature2-old");
-						branch1.commit();
-						branch2old.commit({ dotStrokeWidth: 10, dotStrokeColor: "grey" });
-						branch1.commit();
-						branch1.merge(master);
-						branch2old.commit({ dotStrokeWidth: 10, dotStrokeColor: "grey" });
-						master.commit();
-						var branch2 = master.branch({ name: "feature2", column: 2 });
-						branch2.commit({ dotStrokeWidth: 10, dotStrokeColor: "white" });
-						branch2.commit({ dotStrokeWidth: 10, dotStrokeColor: "white" });
+			var gitgraph = new GitGraph({
+				template: graphConfig,
+				elementId: "gitrecap-bpf-rebase4",
+				orientation: "horizontal",
+				mode: "compact"
+			});
+			var master = gitgraph.branch("master");
+			master.commit().commit();
+			var branch1 = master.branch("feature1");
+			var branch2old = master.branch("feature2-old");
+			branch1.commit();
+			branch2old.commit({ dotStrokeWidth: 10, dotStrokeColor: "grey" });
+			branch1.commit();
+			branch1.merge(master);
+			branch2old.commit({ dotStrokeWidth: 10, dotStrokeColor: "grey" });
+			master.commit();
+			var branch2 = master.branch({ name: "feature2", column: 2 });
+			branch2.commit({ dotStrokeWidth: 10, dotStrokeColor: "white" });
+			branch2.commit({ dotStrokeWidth: 10, dotStrokeColor: "white" });
 
 	</script>
 <aside class="notes">
@@ -421,23 +529,304 @@
 </aside>
 </section>
 </section>
-<!-- **************************       'lessons'        ************************** -->
+<!-- **************************       fork & PR        ************************** -->
+<!--<section>
+	<section class="middle">
+		<h1>forks and</h1>
+		<h1>pull requests</h1>
+		<aside class="notes">
+			<p>Branch per feature works well when you have commit rights to the repo</p>
+			<p>But when you don't you need something else: forks and pull requests</p>
+			<p>Fork: clone a repo into one you can write to!</p>
+			<p>Builds up a layer on the branch per feature flow</p>
+		</aside>
+	</section>
+	<section class="left">
+		<h2>forks and pull requests</h2>
+		<p>upstream (central)</p>
+		<canvas id="gitrecap-fpr-1-a"></canvas>
+		<script>
+						var gitgraph = new GitGraph({
+							template: graphConfigSmall,
+							elementId: "gitrecap-fpr-1-a",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit().commit();
+		</script>
+<p>origin (your fork)</p>
+<canvas id="gitrecap-fpr-1-b"></canvas>
+<script>
+						var gitgraph = new GitGraph({
+							template: graphConfigSmall,
+							elementId: "gitrecap-fpr-1-b",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit().commit();
+</script>
+<aside class="notes">
+	<p>Here, just created a fork (origin) of central (upstream) repo</p>
+</aside>
+</section>
+<section class="left">
+	<h2>forks and pull requests</h2>
+	<p>upstream (central)</p>
+	<canvas id="gitrecap-fpr-2-a"></canvas>
+	<script>
+						var gitgraph = new GitGraph({
+							template: graphConfigSmall,
+							elementId: "gitrecap-fpr-2-a",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit().commit();
+	</script>
+<p>origin (your fork)</p>
+<canvas id="gitrecap-fpr-2-b"></canvas>
+<script>
+						var gitgraph = new GitGraph({
+							template: graphConfigSmall,
+							elementId: "gitrecap-fpr-2-b",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit().commit();
+						var branch1 = master.branch("feature1").commit().commit();
+</script>
+<aside class="notes">
+	<p>Now, you do your work! But then want to merge back to the upstream (where you don't have rights to push)</p>
+</aside>
+</section>
+<section class="left">
+	<h2>forks and pull requests</h2>
+	<p>upstream (central)</p>
+	<canvas id="gitrecap-fpr-3-a"></canvas>
+	<script>
+						var gitgraph = new GitGraph({
+							template: graphConfigSmall,
+							elementId: "gitrecap-fpr-3-a",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit().commit();
+						var branch1 = master.branch("feature1")
+						branch1.commit();
+						branch1.commit();
+	</script>
+<p>origin (your fork)</p>
+<canvas id="gitrecap-fpr-3-b"></canvas>
+<script>
+						var gitgraph = new GitGraph({
+							template: graphConfigSmall,
+							elementId: "gitrecap-fpr-3-b",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit().commit();
+						var branch1 = master.branch("feature1").commit().commit();
+</script>
+<aside class="notes">
+	<p>Since you don't have access to push, you create a request for the upstream maintainers to pull: pull request</p>
+	<p>Essentially like a hidden branch in upstream that has your branch's commits</p>
+</aside>
+</section>
+<section class="left">
+	<h2>forks and pull requests</h2>
+	<p>upstream (central)</p>
+	<canvas id="gitrecap-fpr-4-a"></canvas>
+	<script>
+						var gitgraph = new GitGraph({
+							template: graphConfigSmall,
+							elementId: "gitrecap-fpr-4-a",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit().commit();
+						var branch1 = master.branch("feature1").commit().commit();
+						branch1.merge(master);
+	</script>
+<p>origin (your fork)</p>
+<canvas id="gitrecap-fpr-4-b"></canvas>
+<script>
+						var gitgraph = new GitGraph({
+							template: graphConfigSmall,
+							elementId: "gitrecap-fpr-4-b",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit().commit();
+						var branch1 = master.branch("feature1").commit().commit();
+</script>
+<aside class="notes">
+	<p>If maintainers are happy then they merge the PR</p>
+</aside>
+</section>
+
+<section class="left">
+	<h2>forks and pull requests</h2>
+	<p>upstream (central)</p>
+	<canvas id="gitrecap-fpr-8-a"></canvas>
+	<script>
+						var gitgraph = new GitGraph({
+							template: graphConfigSmall,
+							elementId: "gitrecap-fpr-8-a",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit().commit();
+	</script>
+<p>origin (your fork)</p>
+<canvas id="gitrecap-fpr-8-b"></canvas>
+<script>
+						var gitgraph = new GitGraph({
+							template: graphConfigSmall,
+							elementId: "gitrecap-fpr-8-b",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit().commit();
+						var branch1 = master.branch("feature1").commit().commit();
+</script>
+<aside class="notes">
+	<p>Ok, so far so good...</p>
+	<p>What if you made changes, but so did someone else?</p>
+</aside>
+</section>
+
+<section class="left">
+	<h2>forks and pull requests</h2>
+	<p>upstream (central)</p>
+	<canvas id="gitrecap-fpr-9-a"></canvas>
+	<script>
+						var gitgraph = new GitGraph({
+							template: graphConfigSmall,
+							elementId: "gitrecap-fpr-9-a",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit().commit();
+						master.commit().commit();
+	</script>
+<p>origin (your fork)</p>
+<canvas id="gitrecap-fpr-9-b"></canvas>
+<script>
+						var gitgraph = new GitGraph({
+							template: graphConfigSmall,
+							elementId: "gitrecap-fpr-9-b",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit().commit();
+						var branch1 = master.branch("feature1").commit().commit();
+</script>
+<aside class="notes">
+	<p>Ok, so far so good...</p>
+	<p>What if you made changes, but so did someone else?</p>
+	<p>Now maintainer may see conflict - rebase time :-)</p>
+</aside>
+</section>
+<section class="left">
+	<h2>forks and pull requests</h2>
+	<p>upstream (central)</p>
+	<canvas id="gitrecap-fpr-10-a"></canvas>
+	<script>
+						var gitgraph = new GitGraph({
+							template: graphConfigSmall,
+							elementId: "gitrecap-fpr-10-a",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit().commit();
+						master.commit().commit();
+	</script>
+<p>origin (your fork)</p>
+<canvas id="gitrecap-fpr-10-b"></canvas>
+<script>
+						var gitgraph = new GitGraph({
+							template: graphConfigSmall,
+							elementId: "gitrecap-fpr-10-b",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit().commit();
+						var branch1 = master.branch("feature1");
+						branch1.commit();
+						master.commit();
+						branch1.commit();
+						master.commit();
+</script>
+<aside class="notes">
+	<p>First step - pull changes into your repo</p>
+	</section>
+	<section class="left">
+		<h2>forks and pull requests</h2>
+		<p>upstream (central)</p>
+		<canvas id="gitrecap-fpr-11-a"></canvas>
+		<script>
+						var gitgraph = new GitGraph({
+							template: graphConfigSmall,
+							elementId: "gitrecap-fpr-11-a",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit().commit();
+						master.commit().commit();
+		</script>
+<p>origin (your fork)</p>
+<canvas id="gitrecap-fpr-11-b"></canvas>
+<script>
+						var gitgraph = new GitGraph({
+							template: graphConfigSmall,
+							elementId: "gitrecap-fpr-11-b",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit().commit();
+						master.commit();
+						master.commit();
+						var branch1 = master.branch("feature1");
+						branch1.commit();
+						branch1.commit();
+</script>
+<aside class="notes">
+	<p>Now rebase!</p>
+	<p>Standard cycle:</p>
+	<ul>
+		<li>update master</li>
+		<li>rebase</li>
+		<li>push</li>
+	</ul>
+</aside>
+</section>
+
+</section>-->
+<!-- **************************       'lessons'         ************************** -->
 <section>
 	<section class="middle" data-transition="slide">
 		<h1>rebase</h1>
 		<h3 class="fragment" data-fragment-index="1">keep it clean.</h3>
 		<aside class="notes">
-			<p>So.. rebase can move commits to a new base point</p>
+			<p>Can move commits to a new base point</p>
 			<p>Helps to keep things easy for reviewer - good thing to do!</p>
 			<p>On that note, also favour multiple PRs over on large PR with several unrelated changes</p>
 			<p>"rebase early, rebase often"</p>
-		</aside>
-	</section>
-	<section class="middle" data-transition="slide">
-		<h1>golden rule</h1>
-		<p>don't rebase public branches</p>
-		<aside class="notes">
-			<p>Don't rebase public/shared branches - you screw people over!</p>
 		</aside>
 	</section>
 	<section class="middle" data-transition="slide">
