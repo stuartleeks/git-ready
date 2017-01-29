@@ -754,6 +754,17 @@
 </aside>
 </section>
 </section>
+<section>
+	<section class="middle">
+		<h1>forks and</h1>
+		<h1>pull requests</h1>
+		<aside class="notes">
+			<p>Branch per feature works well when you have commit rights to the repo</p>
+			<p>But when you don't you need something else: forks and pull requests</p>
+			<p>Fork: clone a repo into one you can write to!</p>
+		</aside>
+	</section>
+</section>
 <!-- **************************       wrap up         ************************** -->
 <section>
 	<section class="middle">
@@ -763,11 +774,36 @@
 		</aside>
 	</section>
 	<section class="left">
-		<h2>Notes...</h2>
+		<h2>So...</h2>
+		<h5>workflows</h5>
+		<h5>cycle of updates</h5>
+		<h5>Rebasing</h5>
+		<h5>gitk (--all)</h5>
+		<h5>aliases</h5>
+		<aside class="notes">
+			<h6>workflows</h6>
+			<p>Start simple and build up</p>
+			<h6>cycle of updates</h6>
+			<p>when in fork/pr flow, updates flow from upstream to local, local to fork , fork to upstream (via PR)</p>
+			<h6>rebase</h6>
+			<p>only on your local commits</p>
+			<p>move commits to a new base point</p>
+			<p>interactive - re-order, drop, squash commits</p>
+			<p>not everyone is a fan!</p>
+			<p>I like it for local commits. Commit WIP and squash</p>
+			<p>Drop commits with secrets (if you catch before you push)</p>
+			<h6>gitk --all: sooo useful!</h6>
+			<h6>aliases</h6>
+			<p>git pr, git ls, git logtree</p>
+		</aside>
+	</section>
+	<section class="left">
+		<h2>Links</h2>
 		<h6>Branching, merging, rebasing</h6>
 		<ul class="small">
 			<li><a class="small" href="https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging">https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging</a></li>
 			<li><a class="small" href="https://git-scm.com/docs/git-rebase">https://git-scm.com/docs/git-rebase</a></li>
+			<li><a class="small" href="https://git-scm.com/book/en/v2/Git-Branching-Rebasing">https://git-scm.com/book/en/v2/Git-Branching-Rebasing</a></li>
 			<li><a class="small" href="https://www.atlassian.com/git/tutorials/merging-vs-rebasing">https://www.atlassian.com/git/tutorials/merging-vs-rebasing</a></li>
 		</ul>
 		<h6>Workflows</h6>
@@ -780,6 +816,7 @@
 		<ul class="small">
 			<li><a class="small" href="http://haacked.com/archive/2014/07/28/github-flow-aliases/">http://haacked.com/archive/2014/07/28/github-flow-aliases/</a></li>
 			<li><a class="small" href="http://haacked.com/archive/2015/06/29/git-migrate/">http://haacked.com/archive/2015/06/29/git-migrate/</a></li>
+			<li><a class="small" href="https://gist.github.com/stuartleeks/7d91a111511f9c9fe93421aba71d5a19">https://gist.github.com/stuartleeks/7d91a111511f9c9fe93421aba71d5a19</a></li>
 		</ul>
 		<aside class="notes">
 			<p>Some links for more info, details on commands, ...</p>
