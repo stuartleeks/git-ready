@@ -112,19 +112,23 @@
 			<section class="middle">
 				<section data-transition="slide">
 					<h1>git ready</h1>
-					<aside class="notes">I liked Nava's idea of #click# "git master"</aside>
+					<aside class="notes"><p>I liked Nava's idea of #click# "git master"</p></aside>
 				</section>
 				<section data-transition="slide">
 					<h1>git master</h1>
-					<aside class="notes">But I don't see myself as a master!</aside>
+					<aside class="notes">
+						<p>But I don't see myself as a master!</p>
+						<p>Used to be pretty familiar with TFVC/SVN</p>
+						<p>git felt alien at first - now love it</p>
+					</aside>
 				</section>
 				<section data-transition="slide">
 					<h2>hard won lessons</h2>
 					<h2>with git</h2>
 					<aside class="notes">
-						<p>Used to be pretty familiar with TFVC/SVN</p>
-						<p>git felt alien at first - now love it</p>
 						<p>going to cover the things I've worked through beyond git add/commit</p>
+						<p>Quite easy to get up to speed with git basics (commit etc)</p>
+						<p>complexity comes when working in teams or OSS!</p>
 					</aside>
 				</section>
 			</section>
@@ -133,8 +137,6 @@
 				<section class="middle">
 					<h1>workflows</h1>
 					<aside class="notes">
-						<p>Quite easy to get up to speed with git basics (commit etc)</p>
-						<p>complexity comes when working in teams or OSS!</p>
 						<p>Let's take a quick look and see where git's secret sauce comes in...</p>
 					</aside>
 				</section>
@@ -144,7 +146,7 @@
 				<section class="middle">
 					<h1>free for all</h1>
 					<aside class="notes">
-						<p>Single repo, all work in same branch</p>
+						<p>Start out with: single repo, all work in same branch</p>
 						<p>Works as well in git as in any other source control ;-)</p>
 						<p>Enough said!</p>
 					</aside>
@@ -226,7 +228,7 @@
 						branch2.commit();
 	</script>
 <aside class="notes">
-	<p>Could merge master into feature 2 to resolve drift and continue</p>
+	<p>Classic approach: merge master into feature 2 to resolve drift and continue</p>
 </aside>
 </section>
 <section class="left">
@@ -398,24 +400,24 @@
 		<h2>branch per feature</h2>
 		<canvas id="gitrecap-bpf-rebase1"></canvas>
 		<script>
-			var gitgraph = new GitGraph({
-				template: graphConfig,
-				elementId: "gitrecap-bpf-rebase1",
-				orientation: "horizontal",
-				mode: "compact"
-			});
-			var master = gitgraph.branch("master");
-			master.commit().commit();
-			var branch1 = master.branch("feature1");
-			var branch2 = master.branch("feature2");
-			branch1.commit();
-			branch2.commit();
-			branch1.commit();
-			branch1.merge(master);
-			branch2.commit();
-			master.merge(branch2);
-			branch2.commit();
-			master.commit();
+						var gitgraph = new GitGraph({
+							template: graphConfig,
+							elementId: "gitrecap-bpf-rebase1",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit().commit();
+						var branch1 = master.branch("feature1");
+						var branch2 = master.branch("feature2");
+						branch1.commit();
+						branch2.commit();
+						branch1.commit();
+						branch1.merge(master);
+						branch2.commit();
+						master.merge(branch2);
+						branch2.commit();
+						master.commit();
 		</script>
 <aside class="notes">
 	<p>This was the merge-to-update scenario</p>
@@ -475,25 +477,25 @@
 	<h2>branch per feature</h2>
 	<canvas id="gitrecap-bpf-rebase4"></canvas>
 	<script>
-						var gitgraph = new GitGraph({
-							template: graphConfig,
-							elementId: "gitrecap-bpf-rebase4",
-							orientation: "horizontal",
-							mode: "compact"
-						});
-						var master = gitgraph.branch("master");
-						master.commit().commit();
-						var branch1 = master.branch("feature1");
-						var branch2old = master.branch("feature2-old");
-						branch1.commit();
-						branch2old.commit({ dotStrokeWidth: 10, dotStrokeColor: "grey" });
-						branch1.commit();
-						branch1.merge(master);
-						branch2old.commit({ dotStrokeWidth: 10, dotStrokeColor: "grey" });
-						master.commit();
-						var branch2 = master.branch({ name: "feature2", column: 2 });
-						branch2.commit({ dotStrokeWidth: 10, dotStrokeColor: "white" });
-						branch2.commit({ dotStrokeWidth: 10, dotStrokeColor: "white" });
+			var gitgraph = new GitGraph({
+				template: graphConfig,
+				elementId: "gitrecap-bpf-rebase4",
+				orientation: "horizontal",
+				mode: "compact"
+			});
+			var master = gitgraph.branch("master");
+			master.commit().commit();
+			var branch1 = master.branch("feature1");
+			var branch2old = master.branch("feature2-old");
+			branch1.commit();
+			branch2old.commit({ dotStrokeWidth: 10, dotStrokeColor: "grey" });
+			branch1.commit();
+			branch1.merge(master);
+			branch2old.commit({ dotStrokeWidth: 10, dotStrokeColor: "grey" });
+			master.commit();
+			var branch2 = master.branch({ name: "feature2", column: 2 });
+			branch2.commit({ dotStrokeWidth: 10, dotStrokeColor: "white" });
+			branch2.commit({ dotStrokeWidth: 10, dotStrokeColor: "white" });
 
 	</script>
 <aside class="notes">
@@ -523,11 +525,12 @@
 						branch2.merge(master);
 	</script>
 <aside class="notes">
-	<p>TNow when we merge we have a nice clean history</p>
+	<p>Now when we merge we have a nice clean history</p>
 </aside>
 </section>
 </section>
-<section>
+<!-- **************************       fork & PR        ************************** -->
+<!--<section>
 	<section class="middle">
 		<h1>forks and</h1>
 		<h1>pull requests</h1>
@@ -813,23 +816,30 @@
 </aside>
 </section>
 
-</section>
+</section>-->
 <!-- **************************       'lessons'         ************************** -->
 <section>
 	<section class="middle">
-		<h1>rebase [-i]</h1>
+		<h1>rebase</h1>
+		<h3 class="fragment" data-fragment-index="1">keep it clean.</h3>
+		<aside class="notes">
+			<p>Can move commits to a new base point</p>
+			<p>(not everyone a fan)</p>
+			<p>Helps to keep things easy for reviewer - good thing to do!</p>
+			<p>On that note, also favour multiple PRs over on large PR with several unrelated changes</p>
+		</aside>
+	</section>
+	<section class="middle">
+		<h1>rebase -i</h1>
 		<h3 class="fragment" data-fragment-index="1">know it. love it.</h3>
 		<aside class="notes">
-			<p>Can:
+			<p>Interactice can:
 				<ul>
-					<li>move commits to a new base point</li>
-					<li>interactive - re-order, drop, squash commits</li>
-					<li>not everyone is a fan!</li>
+					<li>re-order, drop, squash commits</li>
 					<li>replace stash!</li>
 					<li>Drop commits with secrets (if you catch before you push)</li>
 				</ul>
 			</p>
-			<p>remember: only on your local commits</p>
 		</aside>
 	</section>
 	<section class="middle">
@@ -838,10 +848,8 @@
 		<aside class="notes">
 			<p>Rebase is powerful!</p>
 			<p>Use it wisely</p>
-			<p>(e.g. removing secrets)</p>
-			<p>When creating a PR, rebase on latest point of branch.</p>
-			<p>Keep it simple for the reviewer/maintainer</p>
-			<p>On that note, also favour multiple PRs over on large PR with several unrelated changes</p>
+			<p>(e.g. removing secrets, keeping commits current)</p>
+			<p>remember: only on your local commits</p>
 		</aside>
 	</section>
 
@@ -980,7 +988,7 @@
 							]
 						});
 						Reveal.configure({
-							keyboard : {
+							keyboard: {
 								8: 'prev'
 							}
 						});
