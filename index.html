@@ -356,21 +356,21 @@
 	<h1>git rebase</h1>
 	<canvas id="gitrecap-rebased"></canvas>
 	<script>
-			var gitgraph = new GitGraph({
-				template: graphConfig,
-				elementId: "gitrecap-rebased",
-				orientation: "horizontal",
-				mode: "compact"
-			});
-			var master = gitgraph.branch("master");
-			master.commit().commit();
-			var branch1Old = master.branch("branch1-old");
-			branch1Old.commit({ dotStrokeWidth: 10, dotStrokeColor: "grey" });
-			master.commit().commit();
-			branch1Old.commit({ dotStrokeWidth: 10, dotStrokeColor: "grey" });
-			var branch1 = master.branch({ name: "branch1", column: 1 });
-			branch1.commit({ dotStrokeWidth: 10, dotStrokeColor: "white" });
-			branch1.commit({ dotStrokeWidth: 10, dotStrokeColor: "white" });
+						var gitgraph = new GitGraph({
+							template: graphConfig,
+							elementId: "gitrecap-rebased",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit().commit();
+						var branch1Old = master.branch("branch1-old");
+						branch1Old.commit({ dotStrokeWidth: 10, dotStrokeColor: "grey" });
+						master.commit().commit();
+						branch1Old.commit({ dotStrokeWidth: 10, dotStrokeColor: "grey" });
+						var branch1 = master.branch({ name: "branch1", column: 1 });
+						branch1.commit({ dotStrokeWidth: 10, dotStrokeColor: "white" });
+						branch1.commit({ dotStrokeWidth: 10, dotStrokeColor: "white" });
 	</script>
 <aside class="notes">
 	<p>Get the same end code, but cleaner history</p>
@@ -398,24 +398,24 @@
 		<h2>branch per feature</h2>
 		<canvas id="gitrecap-bpf-rebase1"></canvas>
 		<script>
-						var gitgraph = new GitGraph({
-							template: graphConfig,
-							elementId: "gitrecap-bpf-rebase1",
-							orientation: "horizontal",
-							mode: "compact"
-						});
-						var master = gitgraph.branch("master");
-						master.commit().commit();
-						var branch1 = master.branch("feature1");
-						var branch2 = master.branch("feature2");
-						branch1.commit();
-						branch2.commit();
-						branch1.commit();
-						branch1.merge(master);
-						branch2.commit();
-						master.merge(branch2);
-						branch2.commit();
-						master.commit();
+			var gitgraph = new GitGraph({
+				template: graphConfig,
+				elementId: "gitrecap-bpf-rebase1",
+				orientation: "horizontal",
+				mode: "compact"
+			});
+			var master = gitgraph.branch("master");
+			master.commit().commit();
+			var branch1 = master.branch("feature1");
+			var branch2 = master.branch("feature2");
+			branch1.commit();
+			branch2.commit();
+			branch1.commit();
+			branch1.merge(master);
+			branch2.commit();
+			master.merge(branch2);
+			branch2.commit();
+			master.commit();
 		</script>
 <aside class="notes">
 	<p>This was the merge-to-update scenario</p>
@@ -916,8 +916,10 @@
 			<p>create and use as simple reference to commits</p>
 		</aside>
 	</section>
+</section>
 
 <!-- **************************       wrap up         ************************** -->
+<section>
 	<section class="left">
 		<h2>Links</h2>
 		<h6>Branching, merging, rebasing</h6>
