@@ -274,14 +274,21 @@
 						master.merge(branch2);
 						master.merge(branch3);
 						branch2.commit();
-						master.commit();
+
+						var branch4 = master.branch();
+						branch4.commit();
 
 						branch3.merge(master);
 						branch2.commit();
+						branch4.commit();
 						master.merge(branch2);
 						branch2.commit();
+						branch4.commit();
 
-						branch2.merge(master);						
+						master.merge(branch4);
+						branch2.merge(master);
+						master.merge(branch4);
+						branch4.merge(master);												
 	</script>
 <aside class="notes">
 	<p>Works!</p>
@@ -310,7 +317,7 @@
 						master.merge(branch2);
 						branch2.commit();
 						master.commit();
-		</script>
+	</script>
 <aside class="notes">
 	<p>This was the merge-to-update scenario</p>
 </aside>
