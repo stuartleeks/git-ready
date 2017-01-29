@@ -112,22 +112,22 @@
 			<section class="middle">
 				<section data-transition="slide">
 					<h1>git ready</h1>
-					<aside class="notes"><p>I liked Nava's idea of #click# "git master"</p></aside>
+					<aside class="notes"><p>Nava had the cool idea of #click# "git master"</p></aside>
 				</section>
 				<section data-transition="slide">
 					<h1>git master</h1>
 					<aside class="notes">
-						<p>But I don't see myself as a master!</p>
+						<p>But I don't really see myself as a master!</p>
 						<p>Used to be pretty familiar with TFVC/SVN</p>
-						<p>git felt alien at first - now love it</p>
+						<p>When moved to git it felt alien at first - now quite like it</p>
 					</aside>
 				</section>
 				<section data-transition="slide">
 					<h2>hard won lessons</h2>
 					<h2>with git</h2>
 					<aside class="notes">
-						<p>going to cover the things I've worked through beyond git add/commit</p>
-						<p>Quite easy to get up to speed with git basics (commit etc)</p>
+						<p>going to cover the things I've worked through beyond the basics</p>
+						<p>Quite easy to get up to speed with git add/commit etc</p>
 						<p>complexity comes when working in teams or OSS!</p>
 					</aside>
 				</section>
@@ -327,9 +327,7 @@
 						branch1.commit();
 		</script>
 <aside class="notes">
-	<p>Let's come back to simple case...</p>
-	<p>Have branch1, but master has moved on.</p>
-	<p>This is where we merged to update branch1</p>
+	<p>to show rebase, let's come back to simple case...</p>
 </aside>
 </section>
 <section class="left">
@@ -351,6 +349,8 @@
 	</script>
 <aside class="notes">
 	<p>branch1 has two commits/changes</p>
+	<p>master has moved on since we branched</p>
+	<p>could merge..</p>
 	<p>git rebase lets us take then and apply to latest master...</p>
 </aside>
 </section>
@@ -375,7 +375,7 @@
 						branch1.commit({ dotStrokeWidth: 10, dotStrokeColor: "white" });
 	</script>
 <aside class="notes">
-	<p>Get the same end code, but cleaner history</p>
+	<p>Get the same end code as with merge, but cleaner history</p>
 </aside>
 </section>
 <section class="middle">
@@ -819,21 +819,21 @@
 </section>-->
 <!-- **************************       'lessons'         ************************** -->
 <section>
-	<section class="middle">
+	<section class="middle" data-transition="slide">
 		<h1>rebase</h1>
 		<h3 class="fragment" data-fragment-index="1">keep it clean.</h3>
 		<aside class="notes">
 			<p>Can move commits to a new base point</p>
-			<p>(not everyone a fan)</p>
 			<p>Helps to keep things easy for reviewer - good thing to do!</p>
 			<p>On that note, also favour multiple PRs over on large PR with several unrelated changes</p>
+			<p>"rebase early, rebase often"</p>
 		</aside>
 	</section>
-	<section class="middle">
+	<section class="middle" data-transition="slide">
 		<h1>rebase -i</h1>
 		<h3 class="fragment" data-fragment-index="1">know it. love it.</h3>
 		<aside class="notes">
-			<p>Interactice can:
+			<p>Interactive rebase can:
 				<ul>
 					<li>re-order, drop, squash commits</li>
 					<li>replace stash!</li>
@@ -842,9 +842,10 @@
 			</p>
 		</aside>
 	</section>
-	<section class="middle">
+	<section class="middle" data-transition="slide">
 		<h1>rebase [-i]</h1>
-		<h3 class="fragment" data-fragment-index="1">use it for good</h3>
+		<!--<h3 class="fragment" data-fragment-index="1">use it for good</h3>-->
+		<h3 class="fragment" data-fragment-index="1">with great power ...</h3>
 		<aside class="notes">
 			<p>Rebase is powerful!</p>
 			<p>Use it wisely</p>
@@ -853,7 +854,7 @@
 		</aside>
 	</section>
 
-	<section class="middle">
+	<section class="middle" data-transition="slide">
 		<h1>rebase --abort</h1>
 		<h3 class="fragment" data-fragment-index="1">sometimes 'it' happens</h3>
 		<aside class="notes">
@@ -861,7 +862,7 @@
 			<p>on that note...</p>
 		</aside>
 	</section>
-	<section class="middle">
+	<section class="middle" data-transition="slide">
 		<h1>.git</h1>
 		<h3 class="fragment" data-fragment-index="1">belt and braces</h3>
 		<aside class="notes">
@@ -870,15 +871,15 @@
 			<p>Doing something new? Copy your source folder :-)</p>
 		</aside>
 	</section>
-	<section class="middle">
+	<section class="middle" data-transition="slide">
 		<h1>workflows</h1>
 		<h3 class="fragment" data-fragment-index="1">k.i.s.s.</h3>
 		<aside class="notes">
-			<p>keep. it. simple. stupid</p>
+			<p>keep. it. simple. (stupid)</p>
 			<p>Start simple. Build up in layers</p>
 		</aside>
 	</section>
-	<!--<section class="middle">
+	<!--<section class="middle" data-transition="slide">
 		<h1>the flow</h1>
 		<h3 class="fragment" data-fragment-index="1">upstream/master</h3>
 		<h3 class="fragment" data-fragment-index="1">-> origin/master</h3>
@@ -889,7 +890,7 @@
 			<p>when in fork/pr flow, updates flow from upstream to local, local to fork , fork to upstream (via PR)</p>
 		</aside>
 	</section>-->
-	<section class="middle">
+	<section class="middle" data-transition="slide">
 		<h1>gitk [--all]</h1>
 		<h3 class="fragment" data-fragment-index="1">your eyes on your repo</h3>
 		<aside class="notes">
@@ -897,7 +898,7 @@
 			<p>first step before a rebase :-)</p>
 		</aside>
 	</section>
-	<section class="middle">
+	<section class="middle" data-transition="slide">
 		<h1>aliases</h1>
 		<h3 class="fragment" data-fragment-index="1">own it.</h3>
 		<aside class="notes">
@@ -907,7 +908,7 @@
 			<p>... </p>
 		</aside>
 	</section>
-	<section class="left">
+	<section class="left" data-transition="slide">
 		<h2>small fry</h2>
 		<h5 class="fragment" data-fragment-index="1">commit message length</h5>
 		<h5 class="fragment" data-fragment-index="2">posh-git</h5>
@@ -953,14 +954,14 @@
 			<p>Some links for more info, details on commands, ...</p>
 		</aside>
 	</section>
-	<section class="middle">
+	<section class="middle" data-transition="slide">
 		<h1>git on with it</h1>
 		<aside class="notes">
 			<p>embrace git</p>
 			<p>have fun</p>
 		</aside>
 	</section>
-	<section class="middle">
+	<section class="middle" data-transition="slide">
 		<h2><a href="http://git-ready.faux.ninja">git-ready.faux.ninja</a></h2>
 		<aside class="notes">
 			<p>Here's a link to the presentation :-)</p>
