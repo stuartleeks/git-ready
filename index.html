@@ -122,8 +122,9 @@
 					<h2>hard won lessons</h2>
 					<h2>with git</h2>
 					<aside class="notes">
-						<p>Here are the things that I think I've figured out as a former TFS/SVN user</p>
-						<p>This is just git theory/concepts (not command usage!)</p>
+						<p>Used to be pretty familiar with TFVC/SVN</p>
+						<p>git felt alien at first - now love it</p>
+						<p>going to cover some of the conecpts that I think are cool</p>
 					</aside>
 				</section>
 			</section>
@@ -133,30 +134,30 @@
 					<h1>workflows</h1>
 					<aside class="notes">
 						<p>Quite easy to get up to speed with git basics (commit etc)</p>
-						<p>complexity comes when working in teams!</p>
+						<p>complexity comes when working in teams or OSS!</p>
 						<p>Various approaches with git...</p>
 					</aside>
 				</section>
-				<section class="left">
-					<h2>workflows</h2>
-					<ul>
-						<li>centralised
-							<ul>
-								<li>free for all</li>
-								<li>branch per feature</li>
-							</ul>
-						</li>
-						<li>de-centralised
-							<ul>
-								<li>forks and pull requests</li>
-							</ul>
-						</li>
-						<li>("successful branching model")</li>
-					</ul>
-					<aside class="notes">
-						<p>This is just a sample of the workflows, but great way to talk about git</p>
-					</aside>
-				</section>
+				<!--<section class="left">
+						<h2>workflows</h2>
+						<ul>
+							<li>centralised
+								<ul>
+									<li>free for all</li>
+									<li>branch per feature</li>
+								</ul>
+							</li>
+							<li>de-centralised
+								<ul>
+									<li>forks and pull requests</li>
+								</ul>
+							</li>
+							<li>("successful branching model")</li>
+						</ul>
+						<aside class="notes">
+							<p>This is just a sample of the workflows, but great way to talk about git</p>
+						</aside>
+					</section>-->
 			</section>
 			<!-- **************************       workflow: free for all       ************************** -->
 			<section>
@@ -330,18 +331,18 @@
 		<h1>git rebase</h1>
 		<canvas id="gitrecap-rebase1"></canvas>
 		<script>
-			var gitgraph = new GitGraph({
-				template: graphConfig,
-				elementId: "gitrecap-rebase1",
-				orientation: "horizontal",
-				mode: "compact"
-			});
-			var master = gitgraph.branch("master");
-			master.commit().commit();
-			var branch1 = master.branch("branch1");
-			branch1.commit();
-			master.commit().commit();
-			branch1.commit();
+						var gitgraph = new GitGraph({
+							template: graphConfig,
+							elementId: "gitrecap-rebase1",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit().commit();
+						var branch1 = master.branch("branch1");
+						branch1.commit();
+						master.commit().commit();
+						branch1.commit();
 		</script>
 <aside class="notes">
 	<p>Let's come back to simple case...</p>
@@ -375,21 +376,21 @@
 	<h1>git rebase</h1>
 	<canvas id="gitrecap-rebased"></canvas>
 	<script>
-						var gitgraph = new GitGraph({
-							template: graphConfig,
-							elementId: "gitrecap-rebased",
-							orientation: "horizontal",
-							mode: "compact"
-						});
-						var master = gitgraph.branch("master");
-						master.commit().commit();
-						var branch1Old = master.branch("branch1-old");
-						branch1Old.commit({ dotStrokeWidth: 10, dotStrokeColor: "grey" });
-						master.commit().commit();
-						branch1Old.commit({ dotStrokeWidth: 10, dotStrokeColor: "grey" });
-						var branch1 = master.branch({ name: "branch1", column: 1 });
-						branch1.commit({ dotStrokeWidth: 10, dotStrokeColor: "white" });
-						branch1.commit({ dotStrokeWidth: 10, dotStrokeColor: "white" });
+			var gitgraph = new GitGraph({
+				template: graphConfig,
+				elementId: "gitrecap-rebased",
+				orientation: "horizontal",
+				mode: "compact"
+			});
+			var master = gitgraph.branch("master");
+			master.commit().commit();
+			var branch1Old = master.branch("branch1-old");
+			branch1Old.commit({ dotStrokeWidth: 10, dotStrokeColor: "grey" });
+			master.commit().commit();
+			branch1Old.commit({ dotStrokeWidth: 10, dotStrokeColor: "grey" });
+			var branch1 = master.branch({ name: "branch1", column: 1 });
+			branch1.commit({ dotStrokeWidth: 10, dotStrokeColor: "white" });
+			branch1.commit({ dotStrokeWidth: 10, dotStrokeColor: "white" });
 	</script>
 <aside class="notes">
 	<p>Get the same end code, but cleaner history</p>
@@ -403,6 +404,7 @@
 	<p>Don't rebase public/shared branches - you screw people over!</p>
 </aside>
 </section>
+
 <!-- **************************       rebase applied        ************************** -->
 <section>
 	<section class="middle">
@@ -630,7 +632,9 @@
 						});
 						var master = gitgraph.branch("master");
 						master.commit().commit();
-						var branch1 = master.branch("feature1").commit().commit();
+						var branch1 = master.branch("feature1")
+						branch1.commit();
+						branch1.commit();
 	</script>
 <p>origin (your fork)</p>
 <canvas id="gitrecap-fpr-3-b"></canvas>
@@ -830,12 +834,52 @@
 </section>
 
 </section>
-<!-- **************************       wrap up         ************************** -->
+<!-- **************************       'lessons'         ************************** -->
 <section>
 	<section class="middle">
-		<h1>So...</h1>
+		<h1>rebase [-i]</h1>
+		<h3 class="fragment" data-fragment-index="1">know it. love it.</h3>
 		<aside class="notes">
-			<p>what next?</p>
+			<p>Can:
+				<ul>
+					<li>move commits to a new base point</li>
+					<li>interactive - re-order, drop, squash commits</li>
+					<li>not everyone is a fan!</li>
+					<li>replace stash!</li>
+					<li>Drop commits with secrets (if you catch before you push)</li>
+				</ul>
+			</p>
+			<p>remember: only on your local commits</p>
+		</aside>
+	</section>
+	<section class="middle">
+		<h1>rebase [-i]</h1>
+		<h3 class="fragment" data-fragment-index="1">use it for good</h3>
+		<aside class="notes">
+			<p>Rebase is powerful!</p>
+			<p>Use it wisely</p>
+			<p>(e.g. removing secrets)</p>
+			<p>When creating a PR, rebase on latest point of branch.</p>
+			<p>Keep it simple for the reviewer/maintainer</p>
+			<p>On that note, also favour multiple PRs over on large PR with several unrelated changes</p>
+		</aside>
+	</section>
+
+	<section class="middle">
+		<h1>rebase --abort</h1>
+		<h3 class="fragment" data-fragment-index="1">sometimes 'it' happens</h3>
+		<aside class="notes">
+			<p>If you get into an ugly rebase remember rebase --abort!</p>
+			<p>on that note...</p>
+		</aside>
+	</section>
+	<section class="middle">
+		<h1>.git</h1>
+		<h3 class="fragment" data-fragment-index="1">belt and braces</h3>
+		<aside class="notes">
+			<p>"suspenders" for Americans</p>
+			<p>All your state is in .git!</p>
+			<p>Doing something new? Copy your source folder :-)</p>
 		</aside>
 	</section>
 	<section class="middle">
@@ -855,35 +899,6 @@
 		<aside class="notes">
 			<p>There's a natural and happy cycle of updates with forks. Stick to it.</p>
 			<p>when in fork/pr flow, updates flow from upstream to local, local to fork , fork to upstream (via PR)</p>
-		</aside>
-	</section>
-	<section class="middle">
-		<h1>rebase [-i]</h1>
-		<h3 class="fragment" data-fragment-index="1">know it. love it.</h3>
-		<aside class="notes">
-			<p>Rebase is powerful!</p>
-			<p>only on your local commits</p>
-			<p>move commits to a new base point</p>
-			<p>interactive - re-order, drop, squash commits</p>
-			<p>not everyone is a fan!</p>
-			<p>replace stash!</p>
-			<p>Drop commits with secrets (if you catch before you push)</p>
-		</aside>
-	</section>
-	<section class="middle">
-		<h1>rebase --abort</h1>
-		<h3 class="fragment" data-fragment-index="1">sometimes 'it' happens</h3>
-		<aside class="notes">
-			<p>If you get into an ugly rebase remember rebase --abort!</p>
-			<p>on that note...</p>
-		</aside>
-	</section>
-	<section class="middle">
-		<h1>.git</h1>
-		<h3 class="fragment" data-fragment-index="1">it's all about .git</h3>
-		<aside class="notes">
-			<p>All your state is in .git!</p>
-			<p>Doing something new? Copy your source folder :-)</p>
 		</aside>
 	</section>
 	<section class="middle">
@@ -921,34 +936,8 @@
 			<p>create and use as simple reference to commits</p>
 		</aside>
 	</section>
-	<!--<section class="left">
-		<h2>So...</h2>
-		<h5 class="fragment" data-fragment-index="1">workflows</h5>
-		<h5 class="fragment" data-fragment-index="2">cycle of updates</h5>
-		<h5 class="fragment" data-fragment-index="3">Rebasing</h5>
-		<h5 class="fragment" data-fragment-index="4">gitk (--all)</h5>
-		<h5 class="fragment" data-fragment-index="5">aliases</h5>
-		<h5 class="fragment" data-fragment-index="6">it's all about .git</h5>
-		<aside class="notes">
-			<h6>workflows</h6>
-			<p>Start simple and build up</p>
-			<h6>cycle of updates</h6>
-			<p>when in fork/pr flow, updates flow from upstream to local, local to fork , fork to upstream (via PR)</p>
-			<h6>rebase</h6>
-			<p>only on your local commits</p>
-			<p>move commits to a new base point</p>
-			<p>interactive - re-order, drop, squash commits</p>
-			<p>not everyone is a fan!</p>
-			<p>I like it for local commits. Commit WIP and squash</p>
-			<p>Drop commits with secrets (if you catch before you push)</p>
-			<h6>gitk --all: sooo useful!</h6>
-			<h6>aliases</h6>
-			<p>git pr, git ls, git logtree</p>
-			<h6>.git</h6>
-			<p>All state is in .git. About to try something new? Copy the folder first</p>
-			<p>Incidentally, git rebase --abort is cool too!</p>
-		</aside>
-	</section>-->
+
+<!-- **************************       wrap up         ************************** -->
 	<section class="left">
 		<h2>Links</h2>
 		<h6>Branching, merging, rebasing</h6>
