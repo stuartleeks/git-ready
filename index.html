@@ -995,6 +995,152 @@
 	<p>Note - new commits are in your branch and the PR :-)</p>
 </aside>
 </section>
+<section class="left">
+	<h2>forks and pull requests</h2>
+	<p>upstream (central)</p>
+	<canvas id="gitrecap-fpr-8-a"></canvas>
+	<script>
+						var gitgraph = new GitGraph({
+							template: graphConfigSmall,
+							elementId: "gitrecap-fpr-8-a",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit().commit();
+		</script>
+<p>origin (your fork)</p>
+<canvas id="gitrecap-fpr-8-b"></canvas>
+<script>
+						var gitgraph = new GitGraph({
+							template: graphConfigSmall,
+							elementId: "gitrecap-fpr-8-b",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit().commit();
+						var branch1 = master.branch("feature1").commit().commit();
+</script>
+<aside class="notes">
+	<p>Ok, so far so good...</p>
+	<p>What if you made changes, but so did someone else?</p>
+</aside>
+</section>
+
+<section class="left">
+	<h2>forks and pull requests</h2>
+	<p>upstream (central)</p>
+	<canvas id="gitrecap-fpr-9-a"></canvas>
+	<script>
+						var gitgraph = new GitGraph({
+							template: graphConfigSmall,
+							elementId: "gitrecap-fpr-9-a",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit().commit();
+						master.commit().commit();
+		</script>
+<p>origin (your fork)</p>
+<canvas id="gitrecap-fpr-9-b"></canvas>
+<script>
+						var gitgraph = new GitGraph({
+							template: graphConfigSmall,
+							elementId: "gitrecap-fpr-9-b",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit().commit();
+						var branch1 = master.branch("feature1").commit().commit();
+</script>
+<aside class="notes">
+	<p>Ok, so far so good...</p>
+	<p>What if you made changes, but so did someone else?</p>
+	<p>Now maintainer may see conflict - rebase time :-)</p>
+</aside>
+</section>
+<section class="left">
+	<h2>forks and pull requests</h2>
+	<p>upstream (central)</p>
+	<canvas id="gitrecap-fpr-10-a"></canvas>
+	<script>
+						var gitgraph = new GitGraph({
+							template: graphConfigSmall,
+							elementId: "gitrecap-fpr-10-a",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit().commit();
+						master.commit().commit();
+		</script>
+<p>origin (your fork)</p>
+<canvas id="gitrecap-fpr-10-b"></canvas>
+<script>
+						var gitgraph = new GitGraph({
+							template: graphConfigSmall,
+							elementId: "gitrecap-fpr-10-b",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit().commit();
+						var branch1 = master.branch("feature1");
+						branch1.commit();
+						master.commit();
+						branch1.commit();
+						master.commit();
+</script>
+<aside class="notes">
+	<p>First step - pull changes into your repo</p>
+</section>
+
+
+<section class="left">
+	<h2>forks and pull requests</h2>
+	<p>upstream (central)</p>
+	<canvas id="gitrecap-fpr-11-a"></canvas>
+	<script>
+						var gitgraph = new GitGraph({
+							template: graphConfigSmall,
+							elementId: "gitrecap-fpr-11-a",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit().commit();
+						master.commit().commit();
+		</script>
+<p>origin (your fork)</p>
+<canvas id="gitrecap-fpr-11-b"></canvas>
+<script>
+						var gitgraph = new GitGraph({
+							template: graphConfigSmall,
+							elementId: "gitrecap-fpr-11-b",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit().commit();
+						master.commit();
+						master.commit();
+						var branch1 = master.branch("feature1");
+						branch1.commit();
+						branch1.commit();
+</script>
+<aside class="notes">
+	<p>Now rebase!</p>
+	<p>Standard cycle:</p>
+	<ul>
+		<li>update master</li>
+		<li>rebase</li>
+		<li>push</li>
+	</ul>
+</aside>
+</section>
 
 </section>
 <!-- **************************       wrap up         ************************** -->
