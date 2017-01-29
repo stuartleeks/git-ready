@@ -116,22 +116,13 @@
 				</section>
 				<section data-transition="slide">
 					<h1>git master</h1>
-					<aside class="notes">Does anyone consider themselves git master? (take a quiet rest, but pretend to be interested ;-))</aside>
+					<aside class="notes">But I don't see myself as a master!</aside>
 				</section>
-				<!--<section data-transition="slide">
-					<h1>git master</h1>
-					<aside class="notes">... but I'm not. Original idea was #click#</aside>
-				</section>
-				<section data-transition="slide">
-					<h2>hard won lessons</h2>
-					<h2>with git</h2>
-					<aside class="notes">... but why pass up a pun :-)</aside>
-				</section>-->
 				<section data-transition="slide">
 					<h2>hard won lessons</h2>
 					<h2>with git</h2>
 					<aside class="notes">
-						<p>Not a master, but here are the things I think I've figured out as a former TFS/SVN user</p>
+						<p>Here are the things that I think I've figured out as a former TFS/SVN user</p>
 						<p>This is just git theory/concepts (not command usage!)</p>
 					</aside>
 				</section>
@@ -163,7 +154,7 @@
 						<li>("successful branching model")</li>
 					</ul>
 					<aside class="notes">
-						<p>Various workflows. start simple :-)</p>
+						<p>This is just a sample of the workflows, but great way to talk about git</p>
 					</aside>
 				</section>
 			</section>
@@ -174,6 +165,7 @@
 					<aside class="notes">
 						<p>Single repo, all work in same branch</p>
 						<p>Works as well in git as in any other source control ;-)</p>
+						<p>Enough said!</p>
 					</aside>
 				</section>
 			</section>
@@ -202,7 +194,7 @@
 						branch2.commit();
 					</script>
 <aside class="notes">
-	<p>Each feature isolated... still cost of branches (staleness)</p>
+	<p>Each feature isolated... cost of branches (staleness)</p>
 	<p>now when we merge feature1 #click#</p>
 </aside>
 </section>
@@ -234,35 +226,9 @@
 	<h2>branch per feature</h2>
 	<canvas id="gitrecap-bpf-3"></canvas>
 	<script>
-			var gitgraph = new GitGraph({
-				template: graphConfig,
-				elementId: "gitrecap-bpf-3",
-				orientation: "horizontal",
-				mode: "compact"
-			});
-			var master = gitgraph.branch("master");
-			master.commit().commit();
-			var branch1 = master.branch("feature1");
-			var branch2 = master.branch("feature2");
-			branch1.commit();
-			branch2.commit();
-			branch1.commit();
-			branch1.merge(master);
-			branch2.commit();
-			master.merge(branch2);
-			branch2.commit();
-	</script>
-<aside class="notes">
-	<p>Could merge master into feature 2 to resolve drift and continue</p>
-</aside>
-</section>
-<section class="left">
-	<h2>branch per feature</h2>
-	<canvas id="gitrecap-bpf-4"></canvas>
-	<script>
 						var gitgraph = new GitGraph({
 							template: graphConfig,
-							elementId: "gitrecap-bpf-4",
+							elementId: "gitrecap-bpf-3",
 							orientation: "horizontal",
 							mode: "compact"
 						});
@@ -277,7 +243,33 @@
 						branch2.commit();
 						master.merge(branch2);
 						branch2.commit();
-						master.commit();
+	</script>
+<aside class="notes">
+	<p>Could merge master into feature 2 to resolve drift and continue</p>
+</aside>
+</section>
+<section class="left">
+	<h2>branch per feature</h2>
+	<canvas id="gitrecap-bpf-4"></canvas>
+	<script>
+			var gitgraph = new GitGraph({
+				template: graphConfig,
+				elementId: "gitrecap-bpf-4",
+				orientation: "horizontal",
+				mode: "compact"
+			});
+			var master = gitgraph.branch("master");
+			master.commit().commit();
+			var branch1 = master.branch("feature1");
+			var branch2 = master.branch("feature2");
+			branch1.commit();
+			branch2.commit();
+			branch1.commit();
+			branch1.merge(master);
+			branch2.commit();
+			master.merge(branch2);
+			branch2.commit();
+			master.commit();
 	</script>
 <aside class="notes">
 	<p>Works!</p>
