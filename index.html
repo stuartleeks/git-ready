@@ -252,37 +252,9 @@
 	<h2>branch per feature</h2>
 	<canvas id="gitrecap-bpf-4"></canvas>
 	<script>
-			var gitgraph = new GitGraph({
-				template: graphConfig,
-				elementId: "gitrecap-bpf-4",
-				orientation: "horizontal",
-				mode: "compact"
-			});
-			var master = gitgraph.branch("master");
-			master.commit().commit();
-			var branch1 = master.branch("feature1");
-			var branch2 = master.branch("feature2");
-			branch1.commit();
-			branch2.commit();
-			branch1.commit();
-			branch1.merge(master);
-			branch2.commit();
-			master.merge(branch2);
-			branch2.commit();
-			master.commit();
-	</script>
-<aside class="notes">
-	<p>Works!</p>
-	<p>Can be harder to understand history over time</p>
-</aside>
-</section>
-<section class="left">
-	<h2>branch per feature</h2>
-	<canvas id="gitrecap-bpf-5"></canvas>
-	<script>
 						var gitgraph = new GitGraph({
-							template: graphConfigSmall,
-							elementId: "gitrecap-bpf-5",
+							template: graphConfig,
+							elementId: "gitrecap-bpf-4",
 							orientation: "horizontal",
 							mode: "compact"
 						});
@@ -293,24 +265,52 @@
 						branch1.commit();
 						branch2.commit();
 						branch1.commit();
-						var branch3 = master.branch("feature3");
-
-						branch3.commit();
 						branch1.merge(master);
 						branch2.commit();
-						branch3.commit();
-
 						master.merge(branch2);
-						master.merge(branch3);
 						branch2.commit();
 						master.commit();
+	</script>
+<aside class="notes">
+	<p>Works!</p>
+	<p>Can be harder to understand history over time</p>
+</aside>
+</section>
+<section class="left">
+	<h2>branch per feature</h2>
+	<canvas id="gitrecap-bpf-5"></canvas>
+	<script>
+			var gitgraph = new GitGraph({
+				template: graphConfigSmall,
+				elementId: "gitrecap-bpf-5",
+				orientation: "horizontal",
+				mode: "compact"
+			});
+			var master = gitgraph.branch("master");
+			master.commit().commit();
+			var branch1 = master.branch("feature1");
+			var branch2 = master.branch("feature2");
+			branch1.commit();
+			branch2.commit();
+			branch1.commit();
+			var branch3 = master.branch("feature3");
 
-						branch3.merge(master);
-						branch2.commit();
-						master.merge(branch2);
-						branch2.commit();
+			branch3.commit();
+			branch1.merge(master);
+			branch2.commit();
+			branch3.commit();
 
-						branch2.merge(master);						
+			master.merge(branch2);
+			master.merge(branch3);
+			branch2.commit();
+			master.commit();
+
+			branch3.merge(master);
+			branch2.commit();
+			master.merge(branch2);
+			branch2.commit();
+
+			branch2.merge(master);						
 	</script>
 <aside class="notes">
 	<p>Works!</p>
@@ -888,8 +888,6 @@
 <aside class="notes">
 	<p>First step - pull changes into your repo</p>
 	</section>
-
-
 	<section class="left">
 		<h2>forks and pull requests</h2>
 		<p>upstream (central)</p>
@@ -949,6 +947,7 @@
 		<h5 class="fragment" data-fragment-index="3">Rebasing</h5>
 		<h5 class="fragment" data-fragment-index="4">gitk (--all)</h5>
 		<h5 class="fragment" data-fragment-index="5">aliases</h5>
+		<h5 class="fragment" data-fragment-index="6">it's all about .git</h5>
 		<aside class="notes">
 			<h6>workflows</h6>
 			<p>Start simple and build up</p>
@@ -964,6 +963,9 @@
 			<h6>gitk --all: sooo useful!</h6>
 			<h6>aliases</h6>
 			<p>git pr, git ls, git logtree</p>
+			<h6>.git</h6>
+			<p>All state is in .git. About to try something new? Copy the folder first</p>
+			<p>Incidentally, git rebase --abort is cool too!</p>
 		</aside>
 	</section>
 	<section class="left">
