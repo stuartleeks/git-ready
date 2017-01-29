@@ -762,8 +762,240 @@
 			<p>Branch per feature works well when you have commit rights to the repo</p>
 			<p>But when you don't you need something else: forks and pull requests</p>
 			<p>Fork: clone a repo into one you can write to!</p>
+			<p>Builds up a layer on the branch per feature flow</p>
 		</aside>
 	</section>
+	<section class="left">
+		<h2>forks and pull requests</h2>
+		<p>upstream (central)</p>
+		<canvas id="gitrecap-fpr-1-a"></canvas>
+		<script>
+						var gitgraph = new GitGraph({
+							template: graphConfigSmall,
+							elementId: "gitrecap-fpr-1-a",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit().commit();
+		</script>
+<p>origin (your fork)</p>
+<canvas id="gitrecap-fpr-1-b"></canvas>
+<script>
+						var gitgraph = new GitGraph({
+							template: graphConfigSmall,
+							elementId: "gitrecap-fpr-1-b",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit().commit();
+</script>
+<aside class="notes">
+	<p>Here, just created a fork (origin) of central (upstream) repo</p>
+</aside>
+</section>
+<section class="left">
+	<h2>forks and pull requests</h2>
+	<p>upstream (central)</p>
+	<canvas id="gitrecap-fpr-2-a"></canvas>
+	<script>
+						var gitgraph = new GitGraph({
+							template: graphConfigSmall,
+							elementId: "gitrecap-fpr-2-a",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit().commit();
+		</script>
+<p>origin (your fork)</p>
+<canvas id="gitrecap-fpr-2-b"></canvas>
+<script>
+						var gitgraph = new GitGraph({
+							template: graphConfigSmall,
+							elementId: "gitrecap-fpr-2-b",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit().commit();
+						var branch1 = master.branch("feature1").commit().commit();
+</script>
+<aside class="notes">
+	<p>Now, you do your work! But then want to merge back to the upstream (where you don't have rights to push)</p>
+</aside>
+</section>
+<section class="left">
+	<h2>forks and pull requests</h2>
+	<p>upstream (central)</p>
+	<canvas id="gitrecap-fpr-3-a"></canvas>
+	<script>
+						var gitgraph = new GitGraph({
+							template: graphConfigSmall,
+							elementId: "gitrecap-fpr-3-a",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit().commit();
+						var branch1 = master.branch("feature1").commit().commit();
+		</script>
+<p>origin (your fork)</p>
+<canvas id="gitrecap-fpr-3-b"></canvas>
+<script>
+						var gitgraph = new GitGraph({
+							template: graphConfigSmall,
+							elementId: "gitrecap-fpr-3-b",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit().commit();
+						var branch1 = master.branch("feature1").commit().commit();
+</script>
+<aside class="notes">
+	<p>Since you don't have access to push, you create a request for the upstream maintainers to pull: pull request</p>
+	<p>Essentially like a hidden branch in upstream that has your branch's commits</p>
+</aside>
+</section>
+<section class="left">
+	<h2>forks and pull requests</h2>
+	<p>upstream (central)</p>
+	<canvas id="gitrecap-fpr-4-a"></canvas>
+	<script>
+						var gitgraph = new GitGraph({
+							template: graphConfigSmall,
+							elementId: "gitrecap-fpr-4-a",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit().commit();
+						var branch1 = master.branch("feature1").commit().commit();
+						branch1.merge(master);
+		</script>
+<p>origin (your fork)</p>
+<canvas id="gitrecap-fpr-4-b"></canvas>
+<script>
+						var gitgraph = new GitGraph({
+							template: graphConfigSmall,
+							elementId: "gitrecap-fpr-4-b",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit().commit();
+						var branch1 = master.branch("feature1").commit().commit();
+</script>
+<aside class="notes">
+	<p>If maintainers are happy then they merge the PR</p>
+</aside>
+</section>
+<section class="left">
+	<h2>forks and pull requests</h2>
+	<p>upstream (central)</p>
+	<canvas id="gitrecap-fpr-5-a"></canvas>
+	<script>
+						var gitgraph = new GitGraph({
+							template: graphConfigSmall,
+							elementId: "gitrecap-fpr-5-a",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit().commit();
+						var branch1 = master.branch("feature1").commit().commit();
+		</script>
+<p>origin (your fork)</p>
+<canvas id="gitrecap-fpr-5-b"></canvas>
+<script>
+						var gitgraph = new GitGraph({
+							template: graphConfigSmall,
+							elementId: "gitrecap-fpr-5-b",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit().commit();
+						var branch1 = master.branch("feature1").commit().commit();
+</script>
+<aside class="notes">
+	<p>If not, they explain why not and you fix...</p>
+</aside>
+</section>
+<section class="left">
+	<h2>forks and pull requests</h2>
+	<p>upstream (central)</p>
+	<canvas id="gitrecap-fpr-6-a"></canvas>
+	<script>
+						var gitgraph = new GitGraph({
+							template: graphConfigSmall,
+							elementId: "gitrecap-fpr-6-a",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit().commit();
+						var branch1 = master.branch("feature1").commit().commit();
+						branch1.commit().commit();
+		</script>
+<p>origin (your fork)</p>
+<canvas id="gitrecap-fpr-6-b"></canvas>
+<script>
+						var gitgraph = new GitGraph({
+							template: graphConfigSmall,
+							elementId: "gitrecap-fpr-6-b",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit().commit();
+						var branch1 = master.branch("feature1").commit().commit();
+						branch1.commit().commit();
+</script>
+<aside class="notes">
+	<p>If not, they explain why not and you fix</p>
+	<p>Note - new commits are in your branch and the PR :-)</p>
+</aside>
+</section>
+<section class="left">
+	<h2>forks and pull requests</h2>
+	<p>upstream (central)</p>
+	<canvas id="gitrecap-fpr-7-a"></canvas>
+	<script>
+						var gitgraph = new GitGraph({
+							template: graphConfigSmall,
+							elementId: "gitrecap-fpr-7-a",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit().commit();
+						var branch1 = master.branch("feature1").commit().commit();
+						branch1.commit().commit();
+						branch1.merge(master);
+		</script>
+<p>origin (your fork)</p>
+<canvas id="gitrecap-fpr-7-b"></canvas>
+<script>
+						var gitgraph = new GitGraph({
+							template: graphConfigSmall,
+							elementId: "gitrecap-fpr-7-b",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit().commit();
+						var branch1 = master.branch("feature1").commit().commit();
+						branch1.commit().commit();
+</script>
+<aside class="notes">
+	<p>If not, they explain why not and you fix</p>
+	<p>Note - new commits are in your branch and the PR :-)</p>
+</aside>
+</section>
+
 </section>
 <!-- **************************       wrap up         ************************** -->
 <section>
