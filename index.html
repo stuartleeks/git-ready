@@ -213,7 +213,6 @@
 						branch1.merge(master);
 						branch2.commit();
 						master.merge(branch2);
-						branch2.commit();
 	</script>
 <aside class="notes">
 	<p>Classic approach: merge master into feature 2 to resolve drift and continue</p>
@@ -240,10 +239,10 @@
 						branch2.commit();
 						master.merge(branch2);
 						branch2.commit();
-						master.commit();
+						branch2.merge(master);
 	</script>
 <aside class="notes">
-	<p>Works!</p>
+	<p>Works! </p>
 	<p>Can be harder to understand history over time</p>
 </aside>
 </section>
@@ -292,7 +291,7 @@
 	</script>
 <aside class="notes">
 	<p>Works!</p>
-	<p>Can be harder to understand history over time</p>
+	<p>With multiple features, end up with this very quickly!</p>
 </aside>
 </section>
 <section class="left">
@@ -315,11 +314,10 @@
 						branch1.merge(master);
 						branch2.commit();
 						master.merge(branch2);
-						branch2.commit();
-						master.commit();
 	</script>
 <aside class="notes">
-	<p>This was the merge-to-update scenario</p>
+	<p>So, in example we merged master changes into feature branch... </p>
+	<p>let's rewind...</p>
 </aside>
 </section>
 <section class="left">
@@ -341,10 +339,9 @@
 						branch1.commit();
 						branch1.merge(master);
 						branch2.commit();
-						master.commit();
 	</script>
 <aside class="notes">
-	<p>Take out the merge... need to sync with master...</p>
+	<p>Taken out the merge... need to sync with master...</p>
 </aside>
 </section>
 <section class="left">
@@ -366,7 +363,6 @@
 						branch1.commit();
 						branch1.merge(master);
 						branch2.commit({ dotStrokeWidth: 10, dotStrokeColor: "white" });
-						master.commit();
 	</script>
 <aside class="notes">
 	<p>This was the merge-to-update</p>
@@ -391,7 +387,6 @@
 						branch1.commit();
 						branch1.merge(master);
 						branch2old.commit({ dotStrokeWidth: 10, dotStrokeColor: "grey" });
-						master.commit();
 						var branch2 = master.branch({ name: "feature2", column: 2 });
 						branch2.commit({ dotStrokeWidth: 10, dotStrokeColor: "white" });
 						branch2.commit({ dotStrokeWidth: 10, dotStrokeColor: "white" });
@@ -414,10 +409,38 @@
 						var master = gitgraph.branch("master");
 						master.commit().commit();
 						var branch1 = master.branch("feature1");
+						var branch2old = master.branch("feature2-old");
+						branch1.commit();
+						branch2old.commit({ dotStrokeWidth: 10, dotStrokeColor: "grey" });
+						branch1.commit();
+						branch1.merge(master);
+						branch2old.commit({ dotStrokeWidth: 10, dotStrokeColor: "grey" });
+						var branch2 = master.branch({ name: "feature2", column: 2 });
+						branch2.commit({ dotStrokeWidth: 10, dotStrokeColor: "white" });
+						branch2.commit({ dotStrokeWidth: 10, dotStrokeColor: "white" });
+						branch2.merge(master);
+
+	</script>
+<aside class="notes">
+	<p>This was the merge-to-update</p>
+</aside>
+</section>
+<section class="left">
+	<h2>branch per feature</h2>
+	<canvas id="gitrecap-bpf-rebase6"></canvas>
+	<script>
+						var gitgraph = new GitGraph({
+							template: graphConfig,
+							elementId: "gitrecap-bpf-rebase6",
+							orientation: "horizontal",
+							mode: "compact"
+						});
+						var master = gitgraph.branch("master");
+						master.commit().commit();
+						var branch1 = master.branch("feature1");
 						branch1.commit();
 						branch1.commit();
 						branch1.merge(master);
-						master.commit();
 						var branch2 = master.branch({ name: "feature2", column: 1 });
 						branch2.commit();
 						branch2.commit();
