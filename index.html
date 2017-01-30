@@ -490,13 +490,20 @@
 			<p>Don't rebase public/shared branches - you screw people over!</p>
 		</aside>
 	</section>
-
 	<section class="middle" data-transition="slide">
 		<h1>rebase --abort</h1>
 		<h3 class="fragment" data-fragment-index="1">sometimes 'it' happens</h3>
 		<aside class="notes">
 			<p>If you get into an ugly rebase remember rebase --abort!</p>
 			<p>on that note...</p>
+		</aside>
+	</section>
+	<section class="middle" data-transition="slide">
+		<h1>gitk [--all]</h1>
+		<h3 class="fragment" data-fragment-index="1">your eyes on your repo</h3>
+		<aside class="notes">
+			<p>simple - see branches, relationships, ...</p>
+			<p>first step before a rebase :-)</p>
 		</aside>
 	</section>
 	<section class="middle" data-transition="slide">
@@ -508,14 +515,7 @@
 			<p>Doing something new? Copy your source folder :-)</p>
 		</aside>
 	</section>
-	<section class="middle" data-transition="slide">
-		<h1>workflows</h1>
-		<h3 class="fragment" data-fragment-index="1">k.i.s.s.</h3>
-		<aside class="notes">
-			<p>keep. it. simple. (stupid)</p>
-			<p>Start simple. Build up in layers</p>
-		</aside>
-	</section>
+
 	<!--<section class="middle" data-transition="slide">
 		<h1>the flow</h1>
 		<h3 class="fragment" data-fragment-index="1">upstream/master</h3>
@@ -528,14 +528,6 @@
 		</aside>
 	</section>-->
 	<section class="middle" data-transition="slide">
-		<h1>gitk [--all]</h1>
-		<h3 class="fragment" data-fragment-index="1">your eyes on your repo</h3>
-		<aside class="notes">
-			<p>simple - see branches, relationships, ...</p>
-			<p>first step before a rebase :-)</p>
-		</aside>
-	</section>
-	<section class="middle" data-transition="slide">
 		<h1>aliases</h1>
 		<h3 class="fragment" data-fragment-index="1">own it.</h3>
 		<aside class="notes">
@@ -545,7 +537,7 @@
 			<p>... </p>
 		</aside>
 	</section>
-	<section class="left" data-transition="slide">
+	<!--<section class="left" data-transition="slide">
 		<h2>small fry</h2>
 		<h5 class="fragment" data-fragment-index="1">commit message length</h5>
 		<h5 class="fragment" data-fragment-index="2">posh-git</h5>
@@ -561,7 +553,15 @@
 			<p>add branch before rebase. placeholder to go back to!.</p>
 			<p>create and use as simple reference to commits</p>
 		</aside>
-	</section>
+	</section>-->
+	<!--<section class="middle" data-transition="slide">
+		<h1>workflows</h1>
+		<h3 class="fragment" data-fragment-index="1">k.i.s.s.</h3>
+		<aside class="notes">
+			<p>keep. it. simple. (stupid)</p>
+			<p>Start simple. Build up in layers</p>
+		</aside>
+	</section>-->
 </section>
 
 <!-- **************************       wrap up         ************************** -->
@@ -570,22 +570,44 @@
 		<h2>Links</h2>
 		<h6>Branching, merging, rebasing</h6>
 		<ul class="small">
-			<li><a class="small" href="https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging">https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging</a></li>
-			<li><a class="small" href="https://git-scm.com/docs/git-rebase">https://git-scm.com/docs/git-rebase</a></li>
-			<li><a class="small" href="https://git-scm.com/book/en/v2/Git-Branching-Rebasing">https://git-scm.com/book/en/v2/Git-Branching-Rebasing</a></li>
-			<li><a class="small" href="https://www.atlassian.com/git/tutorials/merging-vs-rebasing">https://www.atlassian.com/git/tutorials/merging-vs-rebasing</a></li>
+			<li><a class="small" href="https://git-scm.com/docs/git-rebase">Git docs: rebase</a></li>
+			<li><a class="small" href="https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging">Git book: branching and merging</a></li>
+			<li><a class="small" href="https://git-scm.com/book/en/v2/Git-Branching-Rebasing">Git book: branching and rebasing</a></li>
+			<li><a class="small" href="https://www.atlassian.com/git/tutorials/merging-vs-rebasing">Atlassian: merging vs rebasing</a></li>
 		</ul>
 		<h6>Workflows</h6>
 		<ul class="small">
-			<li><a class="small" href="https://guides.github.com/introduction/flow/">https://guides.github.com/introduction/flow/</a></li>
-			<li><a class="small" href="https://www.atlassian.com/git/tutorials/comparing-workflows">https://www.atlassian.com/git/tutorials/comparing-workflows</a></li>
+			<li><a class="small" href="https://guides.github.com/introduction/flow/">github flow</a></li>
+			<li><a class="small" href="https://www.atlassian.com/git/tutorials/comparing-workflows">Atlassian: comparing workflows</a></li>
 			<!--<li><a class="small" href=""></a></li>-->
 		</ul>
 		<h6>Aliases</h6>
 		<ul class="small">
-			<li><a class="small" href="http://haacked.com/archive/2014/07/28/github-flow-aliases/">http://haacked.com/archive/2014/07/28/github-flow-aliases/</a></li>
-			<li><a class="small" href="http://haacked.com/archive/2015/06/29/git-migrate/">http://haacked.com/archive/2015/06/29/git-migrate/</a></li>
-			<li><a class="small" href="https://gist.github.com/stuartleeks/7d91a111511f9c9fe93421aba71d5a19">https://gist.github.com/stuartleeks/7d91a111511f9c9fe93421aba71d5a19</a></li>
+			<li><a class="small" href="http://haacked.com/archive/2014/07/28/github-flow-aliases/">Haacked: github flow aliases</a></li>
+			<li><a class="small" href="http://haacked.com/archive/2015/06/29/git-migrate/">Haacked: git migrate </a></li>
+			<li><a class="small" href="https://gist.github.com/stuartleeks/7d91a111511f9c9fe93421aba71d5a19">Stuart's favourites</a></li>
+		</ul>
+		<aside class="notes">
+			<p>Some links for more info, details on commands, ...</p>
+		</aside>
+	</section>
+	<section class="left">
+		<h2>Links (Part II)</h2>
+		<h6>commit messages</h6>
+		<ul class="small">
+			<li><a class="small" href="https://git-scm.com/docs/git-commit#_discussion">Git docs: commit messages</a></li>
+			<li><a class="small" href="http://chris.beams.io/posts/git-commit/">Blog post: How to write a commit message</a></li>
+		</ul>
+		<h6>SSH keys</h6>
+		<ul class="small">
+			<li><a class="small" href="https://help.github.com/articles/connecting-to-github-with-ssh/">github + SSH</a></li>
+			<li><a class="small" href="https://www.visualstudio.com/en-us/docs/git/use-ssh-keys-to-authenticate">VSTS + SSH</a></li>
+		</ul>
+		<h6>git setup</h6>
+		<ul class="small">
+			<li><a class="small" href="https://code.visualstudio.com/Docs/editor/versioncontrol#_git-patchdiff-mode">VS Code and git</a></li>
+			<li><a class="small" href="https://github.com/dahlbyk/posh-git">posh-git</a></li>
+
 		</ul>
 		<aside class="notes">
 			<p>Some links for more info, details on commands, ...</p>
