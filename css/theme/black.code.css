@@ -50,6 +50,13 @@ body {
   }
 
   
+.bottom-container{
+ position: relative;
+}
+  .bottom {
+    position: absolute;
+    bottom:1em;
+  }
 
 /*********************************************
  * HEADERS
@@ -95,8 +102,12 @@ body {
 .reveal p.small {
   margin: 10px 0;
   line-height: 1;
-  font-size: smaller }
+  font-size: smaller; }
 
+.reveal p.extra-small {
+  margin: 0;
+  line-height: 1;
+  font-size: small; }
 /* Ensure certain elements are never larger than the slide itself */
 .reveal img,
 .reveal video,
