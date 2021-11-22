@@ -101,7 +101,7 @@
 		var developCol = 1;
 		var releaseCol = 2;
 		var supportCol = 3;
-		var masterCol = 4;
+		var mainCol = 4;
 </script>
 </head>
 
@@ -112,22 +112,12 @@
 			<section>
 				<section class="middle" data-transition="slide">
 					<h1>git ready</h1>
-					<aside class="notes class=" middle "">
-						<p>git ready</p>
-						<p>or to use Nava's suggested title #click# "git master"</p>
-					</aside>
-				</section>
-				<section class="middle" data-transition="slide">
-					<h1>git master</h1>
-					<aside class="notes">
-						<p>Now, I don't really see myself as a master!</p>
-						<p>I used to be pretty familiar with SVN/TFVC</p>
-						<p>When moved to git it felt alien at first</p>
-					</aside>
 				</section>
 				<section class="left bottom-container" data-transition="slide" data-background-image="img/5-stages-of-git.jpg">
 					<div class="bottom"><h3>hard won lessons with git</h3><p class="extra-small">https://twitter.com/LauraCatPJs/status/826455464623812608?s=09</p></div>
 					<aside class="notes">
+						<p>I used to be pretty familiar with SVN/TFVC</p>
+						<p>When moved to git it felt alien at first</p>
 						<p>going to cover some things I've worked through beyond the basics</p>
 						<p>Quite easy to get up to speed with git add/commit etc</p>
 						<p>complexity comes when working in teams or OSS!</p>
@@ -147,10 +137,10 @@
 							orientation: "horizontal",
 							mode: "compact"
 						});
-						var master = gitgraph.branch("master");
-						master.commit().commit();
-						var branch1 = master.branch("feature1");
-						var branch2 = master.branch("feature2");
+						var main = gitgraph.branch("main");
+						main.commit().commit();
+						var branch1 = main.branch("feature1");
+						var branch2 = main.branch("feature2");
 						branch1.commit();
 						branch2.commit();
 						branch1.commit();
@@ -172,18 +162,18 @@
 							orientation: "horizontal",
 							mode: "compact"
 						});
-						var master = gitgraph.branch("master");
-						master.commit().commit();
-						var branch1 = master.branch("feature1");
-						var branch2 = master.branch("feature2");
+						var main = gitgraph.branch("main");
+						main.commit().commit();
+						var branch1 = main.branch("feature1");
+						var branch2 = main.branch("feature2");
 						branch1.commit();
 						branch2.commit();
 						branch1.commit();
-						branch1.merge(master);
+						branch1.merge(main);
 						branch2.commit();
 	</script>
 <aside class="notes">
-	<p>feature2 is drifting from master</p>
+	<p>feature2 is drifting from main</p>
 </aside>
 </section>
 <section class="left">
@@ -196,19 +186,19 @@
 							orientation: "horizontal",
 							mode: "compact"
 						});
-						var master = gitgraph.branch("master");
-						master.commit().commit();
-						var branch1 = master.branch("feature1");
-						var branch2 = master.branch("feature2");
+						var main = gitgraph.branch("main");
+						main.commit().commit();
+						var branch1 = main.branch("feature1");
+						var branch2 = main.branch("feature2");
 						branch1.commit();
 						branch2.commit();
 						branch1.commit();
-						branch1.merge(master);
+						branch1.merge(main);
 						branch2.commit();
-						master.merge(branch2);
+						main.merge(branch2);
 	</script>
 <aside class="notes">
-	<p>Classic approach: merge master into feature 2 to resolve drift and continue</p>
+	<p>Classic approach: merge main into feature 2 to resolve drift and continue</p>
 </aside>
 </section>
 <section class="left">
@@ -221,18 +211,18 @@
 							orientation: "horizontal",
 							mode: "compact"
 						});
-						var master = gitgraph.branch("master");
-						master.commit().commit();
-						var branch1 = master.branch("feature1");
-						var branch2 = master.branch("feature2");
+						var main = gitgraph.branch("main");
+						main.commit().commit();
+						var branch1 = main.branch("feature1");
+						var branch2 = main.branch("feature2");
 						branch1.commit();
 						branch2.commit();
 						branch1.commit();
-						branch1.merge(master);
+						branch1.merge(main);
 						branch2.commit();
-						master.merge(branch2);
+						main.merge(branch2);
 						branch2.commit();
-						branch2.merge(master);
+						branch2.merge(main);
 	</script>
 <aside class="notes">
 	<p>Works! </p>
@@ -249,38 +239,38 @@
 							orientation: "horizontal",
 							mode: "compact"
 						});
-						var master = gitgraph.branch("master");
-						master.commit().commit();
-						var branch1 = master.branch("feature1");
-						var branch2 = master.branch("feature2");
+						var main = gitgraph.branch("main");
+						main.commit().commit();
+						var branch1 = main.branch("feature1");
+						var branch2 = main.branch("feature2");
 						branch1.commit();
 						branch2.commit();
 						branch1.commit();
-						var branch3 = master.branch("feature3");
+						var branch3 = main.branch("feature3");
 
 						branch3.commit();
-						branch1.merge(master);
+						branch1.merge(main);
 						branch2.commit();
 						branch3.commit();
 
-						master.merge(branch2);
-						master.merge(branch3);
+						main.merge(branch2);
+						main.merge(branch3);
 						branch2.commit();
 
-						var branch4 = master.branch();
+						var branch4 = main.branch();
 						branch4.commit();
 
-						branch3.merge(master);
+						branch3.merge(main);
 						branch2.commit();
 						branch4.commit();
-						master.merge(branch2);
+						main.merge(branch2);
 						branch2.commit();
 						branch4.commit();
 
-						master.merge(branch4);
-						branch2.merge(master);
-						master.merge(branch4);
-						branch4.merge(master);												
+						main.merge(branch4);
+						branch2.merge(main);
+						main.merge(branch4);
+						branch4.merge(main);												
 	</script>
 <aside class="notes">
 	<p>Works!</p>
@@ -297,19 +287,19 @@
 							orientation: "horizontal",
 							mode: "compact"
 						});
-						var master = gitgraph.branch("master");
-						master.commit().commit();
-						var branch1 = master.branch("feature1");
-						var branch2 = master.branch("feature2");
+						var main = gitgraph.branch("main");
+						main.commit().commit();
+						var branch1 = main.branch("feature1");
+						var branch2 = main.branch("feature2");
 						branch1.commit();
 						branch2.commit();
 						branch1.commit();
-						branch1.merge(master);
+						branch1.merge(main);
 						branch2.commit();
-						master.merge(branch2);
+						main.merge(branch2);
 	</script>
 <aside class="notes">
-	<p>So, in example we merged master changes into feature branch... </p>
+	<p>So, in example we merged main changes into feature branch... </p>
 	<p>let's rewind...</p>
 </aside>
 </section>
@@ -323,18 +313,18 @@
 							orientation: "horizontal",
 							mode: "compact"
 						});
-						var master = gitgraph.branch("master");
-						master.commit().commit();
-						var branch1 = master.branch("feature1");
-						var branch2 = master.branch("feature2");
+						var main = gitgraph.branch("main");
+						main.commit().commit();
+						var branch1 = main.branch("feature1");
+						var branch2 = main.branch("feature2");
 						branch1.commit();
 						branch2.commit();
 						branch1.commit();
-						branch1.merge(master);
+						branch1.merge(main);
 						branch2.commit();
 	</script>
 <aside class="notes">
-	<p>Taken out the merge... need to sync with master...</p>
+	<p>Taken out the merge... need to sync with main...</p>
 </aside>
 </section>
 <section class="left">
@@ -347,14 +337,14 @@
 							orientation: "horizontal",
 							mode: "compact"
 						});
-						var master = gitgraph.branch("master");
-						master.commit().commit();
-						var branch1 = master.branch("feature1");
-						var branch2 = master.branch("feature2");
+						var main = gitgraph.branch("main");
+						main.commit().commit();
+						var branch1 = main.branch("feature1");
+						var branch2 = main.branch("feature2");
 						branch1.commit();
 						branch2.commit({ dotStrokeWidth: 10, dotStrokeColor: "white" });
 						branch1.commit();
-						branch1.merge(master);
+						branch1.merge(main);
 						branch2.commit({ dotStrokeWidth: 10, dotStrokeColor: "white" });
 	</script>
 <aside class="notes">
@@ -371,24 +361,24 @@
 							orientation: "horizontal",
 							mode: "compact"
 						});
-						var master = gitgraph.branch("master");
-						master.commit().commit();
-						var branch1 = master.branch("feature1");
-						var branch2old = master.branch("feature2-old");
+						var main = gitgraph.branch("main");
+						main.commit().commit();
+						var branch1 = main.branch("feature1");
+						var branch2old = main.branch("feature2-old");
 						branch1.commit();
 						branch2old.commit({ dotStrokeWidth: 10, dotStrokeColor: "grey" });
 						branch1.commit();
-						branch1.merge(master);
+						branch1.merge(main);
 						branch2old.commit({ dotStrokeWidth: 10, dotStrokeColor: "grey" });
-						var branch2 = master.branch({ name: "feature2", column: 2 });
+						var branch2 = main.branch({ name: "feature2", column: 2 });
 						branch2.commit({ dotStrokeWidth: 10, dotStrokeColor: "white" });
 						branch2.commit({ dotStrokeWidth: 10, dotStrokeColor: "white" });
 
 	</script>
 <aside class="notes">
-	<p>We can ask git to replay those changes on latest master</p>
+	<p>We can ask git to replay those changes on latest main</p>
 	<p>This is rebase!</p>
-	<p>Now we can go ahead and merge to master...</p>
+	<p>Now we can go ahead and merge to main...</p>
 </aside>
 </section>
 <section class="left">
@@ -401,19 +391,19 @@
 							orientation: "horizontal",
 							mode: "compact"
 						});
-						var master = gitgraph.branch("master");
-						master.commit().commit();
-						var branch1 = master.branch("feature1");
-						var branch2old = master.branch("feature2-old");
+						var main = gitgraph.branch("main");
+						main.commit().commit();
+						var branch1 = main.branch("feature1");
+						var branch2old = main.branch("feature2-old");
 						branch1.commit();
 						branch2old.commit({ dotStrokeWidth: 10, dotStrokeColor: "grey" });
 						branch1.commit();
-						branch1.merge(master);
+						branch1.merge(main);
 						branch2old.commit({ dotStrokeWidth: 10, dotStrokeColor: "grey" });
-						var branch2 = master.branch({ name: "feature2", column: 2 });
+						var branch2 = main.branch({ name: "feature2", column: 2 });
 						branch2.commit({ dotStrokeWidth: 10, dotStrokeColor: "white" });
 						branch2.commit({ dotStrokeWidth: 10, dotStrokeColor: "white" });
-						branch2.merge(master);
+						branch2.merge(main);
 
 	</script>
 <aside class="notes">
@@ -431,16 +421,16 @@
 							orientation: "horizontal",
 							mode: "compact"
 						});
-						var master = gitgraph.branch("master");
-						master.commit().commit();
-						var branch1 = master.branch("feature1");
+						var main = gitgraph.branch("main");
+						main.commit().commit();
+						var branch1 = main.branch("feature1");
 						branch1.commit();
 						branch1.commit();
-						branch1.merge(master);
-						var branch2 = master.branch({ name: "feature2", column: 1 });
+						branch1.merge(main);
+						var branch2 = main.branch({ name: "feature2", column: 1 });
 						branch2.commit();
 						branch2.commit();
-						branch2.merge(master);
+						branch2.merge(main);
 	</script>
 <aside class="notes">
 	<p>...we have a nice clean history</p>
